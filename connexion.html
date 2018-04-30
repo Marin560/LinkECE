@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type = "text/css" href="connexion.css" media ="all"/>
+  <title>Page de connexion LinkECE</title>
+<head>
+  
+       <p class="logo"> <img src="ece.jpg" alt = "ECE" height =300 width = 300></p>
+       <h1>LinkECE</h1>
+       <h2> Connexion </h2>
+
+</head>
+
+<body>
+
+    <form action ="connexion.php" method="post" >
+          <table>
+            <tr>
+            <input type="radio" name="type" value="admin">Administrateur
+          <br></tr>
+          <tr>
+          <input type="radio" name="type" value="utilisateur">Utilisateur
+          </tr>
+          <tr> 
+          <td> E-mail : </td>
+          <td> <input type="text" name="email" placeholder="Votre e-mail..."></td>
+           </tr>
+          <tr> 
+          <td> Mot de passe : </td>
+         <td> <input type="text" name="passw" placeholder="Votre mot de passe.."></td>
+            </tr>
+           <tr>
+           <td colspan="2"><input type="submit" name="Valider"> </td> 
+         </tr>
+       </table>
+
+        </form>
+
+</body>
+
+
+
+<footer >
+  <p>
+    <div id="footer">Copyright &copy; LinkECE<br />
+<a href="mailto:linkece@gmail.com">linkece@gmail.com </a>
+</div>
+  </p>
+</footer>
+
+
+</html>
