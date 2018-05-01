@@ -4,33 +4,33 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="essai.css">
+	<link rel="stylesheet" href="essai.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    
-    </head>
-   
+
+
+</head>
+
 <body>
-    
-    <ul>
-          <li class="dropdown">
-                    <a href="javascript:void(0)"><img src="images/photo_essai.jpg" alt="Avatar"></a>
-                        <div class="dropdown-content">
-                          <a href="#">Mon Reseau</a>
-                          <a href="#">Mes Photos</a>
-                          <a href="#">Mes informations</a>
-                        </div>
-                </li>
-                <li><a class="bouton_actif bouton", href="accueil.php">Accueil</a></li>
-                <li><a class="bouton" href="messagerie.php" class="dropbtn">Messagerie</a></li>
-                <li><a class="bouton" href="notifications.php">Notifications</a></li>
-                <li><a class="bouton" href="emplois.php">Emplois</a></li>
-            
-                <li style="float:right"><a class="bouton" href="#about">Déconnexion</a></li>
-    </ul>
-    
-    
+
+	<ul>
+		<li class="dropdown">
+			<a href="javascript:void(0)"><img src="images/photo_essai.jpg" alt="Avatar"></a>
+			<div class="dropdown-content">
+				<a href="#">Mon Reseau</a>
+				<a href="#">Mes Photos</a>
+				<a href="#">Mes informations</a>
+			</div>
+		</li>
+		<li><a class="bouton_actif bouton", href="accueil.php">Accueil</a></li>
+		<li><a class="bouton" href="messagerie.php" class="dropbtn">Messagerie</a></li>
+		<li><a class="bouton" href="notifications.php">Notifications</a></li>
+		<li><a class="bouton" href="emplois.php">Emplois</a></li>
+
+		<li style="float:right"><a class="bouton" href="#about">Déconnexion</a></li>
+	</ul>
+
+
 	<div class="container text-center">
 		<div class="row">
 			<br><br>
@@ -58,8 +58,15 @@
 					<input type="name" class="form-control" id="nom" >
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">Titre</label>
-					<input type="title" class="form-control" id="titre" >
+					<label for="exampleInputPassword1">Activité</label>
+					<select type="activite" class="form-control" id="Activite" >
+						<option>Etudiant en licence</option>
+						<option>Etudiant en master</option>
+						<option>Etudiant apprenti</option>
+						<option>Etudiant en recherche de stage</option>
+						<option>Enseignant</option>
+						<option>Employé</option>
+					</select>
 				</div>
 			</form>
 			<div class="col-sm-4">
@@ -71,8 +78,8 @@
 
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Nom</label>
-							<input type="name" class="form-control" id="nom" >
+							<label for="exampleInputPassword1">Age</label>
+							<input type="age" class="form-control" id="age" >
 						</div>
 
 					</form>
@@ -96,7 +103,10 @@
 						<br>
 						<label for="exampleInputEmail1">CV : </label>
 						<button type="button" class="btn btn-danger btn-sm">Supprimer</button>
-						<button type="" class="btn btn-primary btn-sm">Télécharger</button>
+							<div class="form-group">
+								<input type="file" class="form-control-file" id="exampleFormControlFile1">
+							</div>
+						
 					</form>
 					
 				</div>

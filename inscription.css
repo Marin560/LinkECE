@@ -10,7 +10,7 @@ h1{
 	text-align: center;
 }
 
-body { background-color: #007179;
+body { background-color: #007179 !important;
  color: #000000;
  font-family: Calibri, sans-serif; 
  margin-left: auto;
