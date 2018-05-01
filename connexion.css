@@ -26,8 +26,10 @@ body { background-color: #007179;
 
 img{
 	position: absolute;
-	top: 0px;
-left: 0px;
+	top: 0em;
+    left: 0em;
+    width: ;
+    height: ;
 }
 
 
