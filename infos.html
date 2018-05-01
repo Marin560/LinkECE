@@ -4,32 +4,31 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="essai.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="general.css">
 
 
 </head>
 
 <body>
-
-	<ul>
-		<li class="dropdown">
-			<a href="javascript:void(0)"><img src="images/photo_essai.jpg" alt="Avatar"></a>
-			<div class="dropdown-content">
-				<a href="#">Mon Reseau</a>
-				<a href="#">Mes Photos</a>
-				<a href="#">Mes informations</a>
+	<nav class="navbar navbar-default" id="tabcol">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><img src="alienor.png" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
-		</li>
-		<li><a class="bouton_actif bouton", href="accueil.php">Accueil</a></li>
-		<li><a class="bouton" href="messagerie.php" class="dropbtn">Messagerie</a></li>
-		<li><a class="bouton" href="notifications.php">Notifications</a></li>
-		<li><a class="bouton" href="emplois.php">Emplois</a></li>
-
-		<li style="float:right"><a class="bouton" href="#about">Déconnexion</a></li>
-	</ul>
-
+			<ul class="nav navbar-nav" >
+				<li><a href="accueil.html">Accueil</a></li>
+				<li><a href="reseau.html">Mon réseau</a></li>
+				<li class="active"><a href="infos.html">Vous</a></li>
+				<li><a href="notifications.html">Notifications</a></li>
+				<li><a href="messagerie.html">Messagerie</a></li>
+				<li ><a href="emplois.html">Emplois</a></li>
+				<li ><a href="albums.html">Photos</a></li>
+			</ul>
+		</div>
+	</nav>
+	
 
 	<div class="container text-center">
 		<div class="row">
@@ -37,7 +36,7 @@
 		</div>
 
 		<div class="row">
-			<img src="alienor.png" class="img-circle" class="img-fluid" alt="Avatar">
+			<img src="alienor.png" class="img-rounded"  alt="Avatar">
 		</div>
 		<div class="row">
 			<br>
