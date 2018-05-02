@@ -42,9 +42,14 @@ input[type=text], select {
     border-radius: 4px;
     box-sizing: border-box;
     align-content:center;
+}
 
+.mdp { 
+    overflow: hidden !important ;
 
 }
+
+
 input[type=submit] {
     width: 100%;
     background-color: #D3D3D3;

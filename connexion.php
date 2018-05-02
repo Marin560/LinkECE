@@ -12,10 +12,8 @@
     </head>
     
 <body>
-    
-<<<<<<< HEAD
-   
-=======
+      
+
     <h1>LinkECE</h1>
     <h2> Connexion </h2>
 
@@ -25,10 +23,10 @@
         E-mail : 
         <input type="text" name="email" id="email" placeholder="Votre e-mail.." onblur="verifEmail(this)" > 
         Mot de passe : 
-        <input type="text" name="mdp" id="mdp" placeholder="Votre mot de passe.." onblur="verifMdp(this)">   
+        <input class ="mdp" type="text" name="mdp" id="mdp" placeholder="Votre mot de passe.." onblur="verifMdp(this)">   
         <input type="submit" name="Valider" value="Se connecter">
     </form>
->>>>>>> 033321fb96fab1eb3a6d814ed40b4fed85922d1a
+
     
 
     <a href="modifier.html"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
