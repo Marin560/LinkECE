@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+$prenom=$_SESSION['prenom'];
+$pp=$_SESSION['pp'];
+$repertoire = $_SESSION['repertoire'];
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +26,7 @@
 	<nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><img src="alienor.png" class="img-circle" height="30" alt="Avatar"></a>
+				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="accueil.php">Accueil</a></li>
