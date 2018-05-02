@@ -19,12 +19,15 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="accueil.html">Accueil</a></li>
-				<li><a href="reseau.html">Mon réseau</a></li>
-				<li><a href="infos.html">Vous</a></li>
-				<li><a href="notifications.html">Notifications</a></li>
-				<li><a href="messagerie.html">Messagerie</a></li>
-				<li><a href="emplois.html">Emplois</a></li>
-				<li><a href="albums.html">Photos</a></li>
+				<li><a href="reseau.php">Mon réseau</a></li>
+				<li><a href="mur.php">Vous</a></li>
+				<li><a href="notifications.php">Notifications</a></li>
+				<li><a href="messagerie.php">Messagerie</a></li>
+				<li><a href="emplois.php">Emplois</a></li>
+				<li><a href="albums.php">Photos</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -37,9 +40,13 @@
 
 			<div class="col-sm-3 well">
 				<div class="well">
-					<p><a href="infos.html">My Profile</a></p>
+					<p><a href="mur.html">My Profile</a></p>
 					<img src="alienor.png" class="img-circle" height="65" width="65" alt="Avatar">
 				</div>
+				<div class="well">
+					<p>Vous avez<br>220<br>relations</p>
+				</div>
+
 			</div>
 
 			<div class="col-sm-7">

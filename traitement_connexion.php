@@ -1,8 +1,8 @@
 <?php  //Page de traitement php
 
 //Connexion à la base de données
-$database = "test"; //Nom de la base de donnée à choisir 
-$db_handle = mysqli_connect("localhost", "root@localhost", ""); //On ouvre la base de données avec Mysqli
+$database = "linkECE"; //Nom de la base de donnée à choisir 
+$db_handle = mysqli_connect("localhost", "root", "root"); //On ouvre la base de données avec Mysqli
 
 $db_found = mysqli_select_db($db_handle, $database);
     
