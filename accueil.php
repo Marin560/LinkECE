@@ -1,14 +1,3 @@
-<?php
-
-session_start();
-$prenom=$_SESSION['prenom'];
-$pp=$_SESSION['pp'];
-$repertoire = $_SESSION['repertoire'];
-$test=$_SESSION['test'];
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +15,7 @@ $test=$_SESSION['test'];
 	<nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
+				<a class="navbar-brand" href="#"><img src="alienor.png" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="accueil.php">Accueil</a></li>
@@ -51,11 +40,11 @@ $test=$_SESSION['test'];
 
 			<div class="col-sm-3 well">
 				<div class="well">
-					<?php echo '<p><a href="mur.php">Bonjour '.$prenom.' ! </a></p>' ?>
-					<img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="65" width="65" alt="Avatar">
+					<p><a href="mur.php">My Profile</a></p>
+					<img src="alienor.png" class="img-circle" height="65" width="65" alt="Avatar">
 				</div>
 				<div class="well">
-					<?php echo '<p>Vous avez<br>'.$test.'<br>relations</p> ' ?>
+					<p>Vous avez<br>220<br>relations</p>
 				</div>
 
 			</div>
