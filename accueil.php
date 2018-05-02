@@ -18,7 +18,7 @@
 				<a class="navbar-brand" href="#"><img src="alienor.png" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="accueil.html">Accueil</a></li>
+				<li class="active"><a href="accueil.php">Accueil</a></li>
 				<li><a href="reseau.php">Mon réseau</a></li>
 				<li><a href="mur.php">Vous</a></li>
 				<li><a href="notifications.php">Notifications</a></li>
@@ -40,7 +40,7 @@
 
 			<div class="col-sm-3 well">
 				<div class="well">
-					<p><a href="mur.html">My Profile</a></p>
+					<p><a href="mur.php">My Profile</a></p>
 					<img src="alienor.png" class="img-circle" height="65" width="65" alt="Avatar">
 				</div>
 				<div class="well">
