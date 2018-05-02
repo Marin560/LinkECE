@@ -24,10 +24,7 @@
     <input type="submit" name="Valider" value="Se connecter"> 
   </form>
     
-    <!-- code javascript pour vérifier que les champs ont été remplis correctement -->
-    <script>
-        alert('Hello world!');
-    </script>
+
     
      <a href="modifier.html"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
 
