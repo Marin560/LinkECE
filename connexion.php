@@ -24,11 +24,7 @@
     <input type="submit" name="Valider" value="Se connecter"> 
   </form>
     
-<<<<<<< HEAD
 
-=======
-   
->>>>>>> b872e97f03b4a243f1e058b8bd6a2194efa94ca7
     
      <a href="modifier.html"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
 
