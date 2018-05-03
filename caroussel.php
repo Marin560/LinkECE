@@ -6,20 +6,27 @@ $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
 $id=$_SESSION['id'];
 
-echo $albums2[0];
 include 'connexion_bdd.php';
 
-if($db_found){
-while($resultat2 = mysqli_fetch_assoc($recu2)){
+if(isset($_GET['album_selec'])){
+      
+     $id_album = $_GET['album_selec'];
 
-    $albums2[$j]=$resultat2["nom_album"];
-    echo $albums2[j];
-    $j++;
-
-  }
-
-
+    if($db_found){
+  
+      $sql = "SELECT DISTINCT id_photo FROM photos WHERE `id_albumphotos` = '".$id_album."'";
+      $sql2 = "SELECT DISTINCT id_photo, id_albumphotos FROM albums INNER JOIN photos ON photos.id_albumphotos=albums.id_album WHERE  nom_album='".$id_album."' ";
+      $recu = mysqli_query($db_handle, $sql2);
+      $photos=array();
+      $truc=array();
+      $id_albumphotos=array();
+      $h=0;
+      $p=1;
+ 
+    }
 }
+
+
 else{
   die('Arrêt du script; Bdd non trouvée');
 }
@@ -40,19 +47,16 @@ else{
 <body>
 
   <div class="container">
-    <h2> <?php echo $albums2[1]; ?> </h2>  
+    <h2> <?php echo $id_album; ?> </h2>  
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
+      
 
       <!-- Wrapper for slides -->
-      <div class="carousel-inner">
+   <!--  <div class="carousel-inner">
+
         <div class="item active">
-          <img src="<?php echo $repertoire.$truc[0]; ?>" alt="photo1" style="width:100%;" >
+          <img src="images/alienor.png" alt="photo1" style="width:100%;" >
         </div>
 
         <div class="item">
@@ -62,7 +66,40 @@ else{
         <div class="item">
           <img src="<?php echo $repertoire.$truc[2]; ?>" alt="photo3" style="width:100%;">
         </div>
-      </div>
+      </div> 
+    -->
+        <!-- php -->
+            <div class="carousel-inner">
+                        <?php 
+                        while($resultat = mysqli_fetch_assoc($recu)){
+                          
+                        $photos[$h]=$resultat['id_photo'];
+                        
+                        $id_albumphotos[$h]=$resultat['id_albumphotos'];
+                       //echo $repertoire.$id_albumphotos[$h].$photos[$h];
+                        echo '
+                              <div class="item active">
+                              <img src="'.$repertoire.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
+                              </div>
+                              
+                               <div class="item ">
+                              <img src="'.$repertoire.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
+                              </div>
+                               
+                        
+                        ';
+
+                        $h++;
+
+                        };
+
+                        ?>
+                </div>    
+                
+                <!-- fin php -->
+
+
+
 
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">

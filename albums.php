@@ -25,11 +25,6 @@ if($db_found){
 	$albums2=array();
 	$j=0;
 
-	while($resultat2 = mysqli_fetch_assoc($recu2)){
-
-		$albums2[$j]=$resultat2["nom_album"];
-		$j++;
-	}
 
 }
 else{
@@ -114,17 +109,29 @@ $_SESSION['album2']= $albums2[1];
                 <div class="col-sm-2">
 				</div>
 				<div class="col-sm-5">
-					<div class="row well ">
-						<p>Albums</p>
-						<div class="col-sm-12 ">
-							<div class="col-sm-5">
-								<div class="row well "><a href='caroussel.php'><p> <?php echo $albums2[0]; ?> </p></a></div>
-							</div>
-							<div class="col-sm-2"></div>
-							<div class="col-sm-5">	
-								<div class="row well " ><a href='caroussel.php'><p> <?php echo $albums2[1]; ?> </p></a></div>
-							</div>
-						</div>
+					<div class="row well "><p>Albums</p>
+						 <!-- php -->
+                        <?php 
+                        while($resultat2 = mysqli_fetch_assoc($recu2)){
+
+                        $albums2[$j]=$resultat2["nom_album"];
+		               
+
+                        echo '
+                            <div class="col-sm-4">
+                                <a href="caroussel.php?album_selec='.$albums2[$j].'"><p> '.$albums2[$j].' </p></a>
+                            </div>
+                        ';
+
+                        $j++;
+
+                        };
+
+                        ?>
+                    </div>
+                </div>
+						
+
 					</div>
 				</div>
 			</div>
