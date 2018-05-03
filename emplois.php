@@ -13,7 +13,6 @@ if($db_found){
 	$sql = "SELECT * FROM emplois ";
 	$recu = mysqli_query($db_handle, $sql) ;
     $i=0;
-    $nom = 1;
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
@@ -58,18 +57,9 @@ else{
             <div class="text-left">
             <button type="button" class="btn btn-info">Mes candidatures</button><p><br></p>
             </div>
+         
+            <?php
             
-            <!------------------- ------------------->
-            
-            <!------------------- ------------------->
-            
-                <!-- Début des annonces -->
-                
-                <!-- Début d'une annonce -->
-                
-                <?php
-                
-                
                 while ($resultat = mysqli_fetch_assoc($recu)) {
 
 				$id_offre[$i] = $resultat['id_offre'];
@@ -95,20 +85,27 @@ else{
                             </div>
 
                             <div class="row">
-                                <a href ="essai'.$nom[$i].'.php"><button type="button" class="btn btn-info">Postuler</button></a>
+                                <a href ="traitement_postulat.php?id_offre='.$id_offre[$i].'"><button type="button" class="btn btn-info">Postuler</button></a>
                             </div>
                         </div>
                 </div>
                 
-                
+               
                 
                 '; 
                 
                 $i++;
                     
-                };
-                ?>
-                <!-- fin d'une annonce --> 
+            };
+            
+             if(isset($_GET['confirmation'])){
+                    //Je récupère mon nom d'alerte
+                    echo '<script type="text/javascript">window.alert("'.$_GET['confirmation'].'");</script>';
+                }
+            
+            
+            ?>
+                
             
             
             <!-- On affiche un espace pour aller à la ligne -->
