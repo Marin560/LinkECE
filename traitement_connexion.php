@@ -10,7 +10,7 @@ if($db_found){
     
     
     //On vérifie que le mail existe bien dans la base de données    
-    $sql = "SELECT id, prenom, pp,mdp FROM user WHERE mail = '".$_POST['email']."' ";
+    $sql = "SELECT id, prenom, pp, mdp, mail, nom FROM user WHERE mail = '".$_POST['email']."' ";
     
     $recu = mysqli_query($db_handle, $sql) ;
     $resultat = mysqli_fetch_assoc($recu);  
@@ -28,6 +28,9 @@ if($db_found){
             $_SESSION['pp'] = $resultat['pp'];
             $_SESSION['repertoire']= "images/";
             $_SESSION['id']= $resultat['id'];
+            $_SESSION['mail']=$resultat['email'];
+            $_SESSION['nom'] = $resultat['nom'];
+
            
             echo $resultat['prenom'].'<br/>';
             echo $resultat['pp'].'<br/>';

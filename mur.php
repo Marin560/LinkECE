@@ -1,12 +1,28 @@
 <?php
-    session_start();
-    $prenom=$_SESSION['prenom'];
-    $pp=$_SESSION['pp'];
-    $repertoire = $_SESSION['repertoire'];
-    $id=$_SESSION['id'];
-    include 'connexion_bdd.php';
-?>
 
+session_start();
+$prenom=$_SESSION['prenom'];
+$pp=$_SESSION['pp'];
+$repertoire = $_SESSION['repertoire'];
+$id=$_SESSION['id'];
+$profilpicture=$_SESSION['pp'];
+$i=0;
+include 'connexion_bdd.php';
+
+if($db_found){
+	
+
+	$sql1 = "SELECT nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user WHERE `id_user`='".$id."'";
+	$recu1 = mysqli_query($db_handle, $sql1) ;
+	
+
+}
+else{
+	die('Arrêt du script; Bdd non trouvée');
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -50,28 +66,28 @@
 
 			<div class="col-sm-3 well">
 				<div class="row well">
-						<p>Photos</p>
-						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						<div class="col-sm-12"><br></div>
-						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-						</div>
-						
+					<p>Photos</p>
+					<div class="col-sm-4">
+						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
 					</div>
+					<div class="col-sm-4">
+						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+					</div>
+					<div class="col-sm-4">
+						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
+					</div>
+					<div class="col-sm-12"><br></div>
+					<div class="col-sm-4">
+						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+					</div>
+					<div class="col-sm-4">
+						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
+					</div>
+					<div class="col-sm-4">
+						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+					</div>
+
+				</div>
 				<div class="well">
 					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
@@ -113,104 +129,51 @@
 						</div>
 					</div>
 				</div>
-				<div class="px-2">
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>  
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>    
-						</div>
-					</div>
+				
+				<?php 
 
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
-						</div>
-					</div>
+			while ($resultatpubli = mysqli_fetch_assoc($recu1)) {
 
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
-						</div>
-					</div>
+				$name[$i] = $_SESSION['prenom']." ".$_SESSION['nom'];
+				$mail[$i]=$_SESSION['mail'];
+				$des[$i]=$resultatpubli['description'];
 
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
+			echo '
+				<div class="row well">
+					<div class="col-sm-12">
+						<div class="col-sm-3">
+							<p>'.$name[$i].'</p>
+							<img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
 						</div>
+						<div class="col-sm-8">
+							<p>'.$des[$i].'</p>
+						</div>  
+						<div class="col-sm-1">
+							<button type="button" class="btn btn-primary btn-xs">...</button>
+						</div> 
+						<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+							<div class="btn-group mr-2" role="group" aria-label="First group">
+								<button type="button" class="btn btn-primary btn-sm">J aime</button>
+								<button type="button" class="btn btn-primary btn-sm">Commenter</button>
+							</div>
+						</div>    
 					</div>
 				</div>
+
+				';
+				$i++;
+			};
+				?>
+				
 			</div>
 			<div class="col-sm-2">
 				<div class="row">
 					<div class="well text-center">
-								<a href="infos.html">Modifier mes informations</a>
+						<a href="infos.html">Modifier mes informations</a>
 					</div>
 				</div>
 			</div>
-
+		
 
 
 		</div>

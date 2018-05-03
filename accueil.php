@@ -15,6 +15,8 @@ if($db_found){
 	$recu = mysqli_query($db_handle, $sql) ;
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb'];
+
+	
     
 }
 else{
