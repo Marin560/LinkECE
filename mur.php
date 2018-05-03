@@ -169,7 +169,7 @@ else{
 			<div class="col-sm-2">
 				<div class="row">
 					<div class="well text-center">
-						<a href="infos.html">Modifier mes informations</a>
+						<a href="infos.php">Modifier mes informations</a>
 					</div>
 				</div>
 			</div>
