@@ -39,11 +39,14 @@ if($db_found){
 		$j++;
 	}
 
-
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
 }
+
+$_SESSION['album1']= $albums2[0];
+$_SESSION['album2']= $albums2[1];
+
 
 ?>
 
@@ -93,6 +96,7 @@ else{
 
 
 						<div class="col-sm-4">
+
 							<img src="<?php echo $repertoire.$truc[0]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-4">
@@ -121,20 +125,20 @@ else{
 					<div class="row well ">
 						<p>Albums</p>
 						<div class="col-sm-12 ">
-						<div class="col-sm-5">
-						<div class="row well "><a href='#'><p> <?php echo $albums2[0]; ?> </p></a></div>	
-					</div>
-					<div class="col-sm-2"></div>
-						<div class="col-sm-5">	
-						<div class="row well " ><a href='#'><p> <?php echo $albums2[1]; ?> </p></a></div>
-					</div>
-					</div>
+							<div class="col-sm-5">
+								<div class="row well "><a href='caroussel.php'><p> <?php echo $albums2[0]; ?> </p></a></div>
+							</div>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-5">	
+								<div class="row well " ><a href='caroussel.php'><p> <?php echo $albums2[1]; ?> </p></a></div>
+							</div>
 						</div>
-						</div>
-					
+					</div>
 				</div>
+
 			</div>
 		</div>
+	</div>
 </body>
 
 </html>
