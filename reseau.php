@@ -11,7 +11,7 @@ include 'connexion_bdd.php';
 
 if($db_found){
 	
-	$sql = "SELECT DISTINCT prenom,nom,pp,mail FROM user INNER JOIN amitie WHERE id1='".$id."' ";
+	$sql = "SELECT nom,prenom,pp,mail FROM amitie INNER JOIN user ON user.id=amitie.id2 WHERE `id1` = '".$id."'";
 	$recu = mysqli_query($db_handle, $sql) ;
 	$nom=array();
 	$i=0;
