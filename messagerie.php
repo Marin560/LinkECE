@@ -1,3 +1,34 @@
+<?php
+
+session_start();
+$prenom=$_SESSION['prenom'];
+$pp=$_SESSION['pp'];
+$repertoire = $_SESSION['repertoire'];
+$test=$_SESSION['test'];
+$id=$_SESSION['id'];
+
+include 'connexion_bdd.php';
+
+if($db_found){
+	
+	$sql = "SELECT COUNT(id1) AS nb FROM amitie WHERE `id1` = '".$id."'";
+	$recu = mysqli_query($db_handle, $sql) ;
+	$resultat = mysqli_fetch_assoc($recu);
+	$_SESSION['nbamis']=$resultat['nb'];
+    
+}
+else{
+	die('Arrêt du script; Bdd non trouvée');
+}
+
+
+
+
+?>
+
+
+
+
 	<!DOCTYPE html>
 	<html>
 	<head>
