@@ -8,6 +8,7 @@ include 'connexion_bdd.php';
 
 if($db_found){
     
+    
     //On vérifie que le mail existe bien dans la base de données    
     $sql = "SELECT id, prenom, pp,mdp FROM user WHERE mail = '".$_POST['email']."' ";
     
