@@ -12,10 +12,8 @@ include 'connexion_bdd.php';
 if($db_found){
 	
 
-	$sql1 = "SELECT nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user WHERE `id_user`='".$id."'";
+	$sql1 = "SELECT id_publi, nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user WHERE `id_user`='".$id."'";
 	$recu1 = mysqli_query($db_handle, $sql1) ;
-	
-
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
@@ -133,10 +131,12 @@ else{
 				<?php 
 
 			while ($resultatpubli = mysqli_fetch_assoc($recu1)) {
-
+                
+                //Affichage des postes
 				$name[$i] = $_SESSION['prenom']." ".$_SESSION['nom'];
 				$mail[$i]=$_SESSION['mail'];
 				$des[$i]=$resultatpubli['description'];
+                $id_publi[$i] = $resultat['id_publi'];
 
 			echo '
 				<div class="row well">
@@ -146,10 +146,10 @@ else{
 							<img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
 						</div>
 						<div class="col-sm-8">
-							<p>'.$des[$i].'</p>
+							<p>'.$des[$i].'</p>      
 						</div>  
 						<div class="col-sm-1">
-							<button type="button" class="btn btn-primary btn-xs">...</button>
+							<a href="traitement_suppression_post.php?id_publication='.$resultat['id_publi'].'"><button type="button" class="btn btn-primary btn-xs">Delete</button></a>
 						</div> 
 						<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 							<div class="btn-group mr-2" role="group" aria-label="First group">
