@@ -22,14 +22,6 @@ if($db_found){
 	$truc=array();
 	$i=0;
 
-	while($resultat = mysqli_fetch_assoc($recu)){
-
-		$photos[$i]=$resultat["id_photo"];
-		$albums[$i]=$resultat["id_albumphotos"];
-		$truc[$i]= $albums[$i].$photos[$i];
-		$i++;
-	}
-
 	$albums2=array();
 	$j=0;
 
@@ -90,36 +82,36 @@ $_SESSION['album2']= $albums2[1];
 		</div>  
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="col-sm-5">
-					<div class="row well">
-						<p>Photos</p>
+                <div class="col-sm-5">
+					<div class="row well"><p>Photos</p>
+                        <!-- php -->
+                        <?php 
+                        while($resultat = mysqli_fetch_assoc($recu)){
+
+                        $photos[$i]=$resultat["id_photo"];
+                        $albums[$i]=$resultat["id_albumphotos"];
+                        $truc[$i]= $albums[$i].$photos[$i];
 
 
-						<div class="col-sm-4">
+                        echo '
+                            <div class="col-sm-4">
+                                <img src="'.$repertoire.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
+                            </div>
+                        ';
 
-							<img src="<?php echo $repertoire.$truc[0]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
-						<div class="col-sm-4">
-							<img src="<?php echo $repertoire.$truc[1]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
-						<div class="col-sm-4">
-							<img src="<?php echo $repertoire.$truc[2]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
-						<div class="col-sm-12"><br></div>
-						<div class="col-sm-4">
-							<img src="<?php echo $repertoire.$truc[3]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
-						<div class="col-sm-4">
-							<img src="<?php echo $repertoire.$truc[4]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
-						<div class="col-sm-4">
-							<img src="<?php echo $repertoire.$truc[5]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
-						</div>
+                        $i++;
 
-					</div>
+                        };
+
+                        ?>
+                    </div>
 				</div>
-				<div class="col-sm-2">
-
+                
+                <!-- fin php -->
+                
+                <!-- Affichage des albums -->
+				
+                <div class="col-sm-2">
 				</div>
 				<div class="col-sm-5">
 					<div class="row well ">
@@ -135,7 +127,6 @@ $_SESSION['album2']= $albums2[1];
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
