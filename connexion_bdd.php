@@ -6,5 +6,8 @@ $db_handle = mysqli_connect("localhost", "root@localhost", ""); //On ouvre la ba
 
 $db_found = mysqli_select_db($db_handle, $database);
 
+//pour l'affichage des accents
+$sql = "SET NAMES 'utf8'";
+mysqli_query($db_handle, $sql) ;
 
 ?>

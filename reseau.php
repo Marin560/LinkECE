@@ -4,7 +4,6 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
-$test=$_SESSION['test'];
 $id=$_SESSION['id'];
 
 include 'connexion_bdd.php';
@@ -15,13 +14,10 @@ if($db_found){
 	$recu = mysqli_query($db_handle, $sql) ;
 	$nom=array();
 	$i=0;
-	
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
 }
-
-
 
 ?>
 
@@ -37,8 +33,6 @@ else{
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="general.css">
-
 	</head>
 </head>
 <body>
