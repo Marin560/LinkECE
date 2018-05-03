@@ -4,9 +4,20 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$id=$_SESSION['id'];
+$profilpicture=$_SESSION['pp'];
+$i=0;
+include 'connexion_bdd.php';
+
+if($db_found){
+	
+
+}
+else{
+	die('Arrêt du script; Bdd non trouvée');
+}
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -23,10 +34,13 @@ $repertoire = $_SESSION['repertoire'];
 </head>
 
 <body>
+
+<?php
+echo '
 	<nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
+				<a class="navbar-brand" href="#"><img src="'.$repertoire.$pp.'" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
 			<ul class="nav navbar-nav" >
 				<li><a href="accueil.php">Accueil</a></li>
@@ -50,7 +64,7 @@ $repertoire = $_SESSION['repertoire'];
 		</div>
 
 		<div class="row">
-			<img src="alienor.png" class="img-rounded"  alt="Avatar">
+			<img src="'.$repertoire.$pp.'" class="img-rounded"  alt="Avatar">
 		</div>
 		<div class="row">
 			<br>
@@ -127,6 +141,9 @@ $repertoire = $_SESSION['repertoire'];
 		</div>
 	</div>
 </div>
+';
 
+?>
 </body>
+
 </html>
