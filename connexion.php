@@ -13,20 +13,6 @@
 
 <body>
 
-  <form method="post" action ="traitement_connexion.php"  >
-         <!-- Formulaire pour envoyer les données de l'utilisateur - Connexion -->  
-    <input type="radio" name="type_user" value="admin">Administrateur<br>
-    <input type="radio" name="type_user" value="utilisateur">Utilisateur <br>
-    E-mail : 
-    <input type="text" name="email" placeholder="Votre e-mail..">
-    Mot de passe : 
-    <input type="text" name="mdp" placeholder="Votre mot de passe..">
-    <input type="submit" name="Valider" value="Se connecter"> 
-  </form>
-    
-    <h1>LinkECE</h1>
-    <h2> Connexion </h2>
-    
         <?php
             if(isset($_GET['number'])){
                 echo $_GET['number'];
