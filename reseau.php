@@ -80,6 +80,7 @@ else{
 				$name[$i] = $resultat['prenom']." ".$resultat['nom'];
 				$mail[$i]=$resultat['mail'];
 				$profilpicture[$i]=$resultat['pp'];
+				
 
 			echo'
 			

@@ -16,9 +16,7 @@ if($db_found){
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb'];
 
-	$sql1 = "SELECT COUNT(id1) AS nb FROM amitie WHERE `id1` = '".$id."'";
-	$recu1 = mysqli_query($db_handle, $sql1) ;
-	$resultat1 = mysqli_fetch_assoc($recu1);
+	
     
 }
 else{
