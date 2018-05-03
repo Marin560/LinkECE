@@ -17,12 +17,11 @@ if(isset($_GET['id_offre'])){
     
     //On fait la requête sql
     if($db_found){
-        
-        $sql = "INSERT INTO `candidature`(`id_offre_postulee`, `id_candidat`) VALUES ('".$offre_postulee."','".$id."') ";
+        $sql = "DELETE FROM candidature WHERE id_offre_postulee = '".$offre_postulee."' AND id_candidat = '".$id."' ";
         mysqli_query($db_handle, $sql);
         
         //Je renvoie vers une nouvelle page
-        header("Location: emplois.php?confirmation=Vous avez bien postulé pour cette offre");
+        header("Location: emplois.php?afficher_candidatures=1");
         
     }
     else{

@@ -8,15 +8,7 @@ $id=$_SESSION['id']; //Id de l'utilisateur en cours
 
 include 'connexion_bdd.php'; //Connexion à la base de données
 
-if($db_found){
-	
-	$sql = "SELECT * FROM emplois ";
-	$recu = mysqli_query($db_handle, $sql) ;
-    $i=0;
-}
-else{
-	die('Arrêt du script; Bdd non trouvée');
-}
+$i=0;
 
 ?>
 
@@ -53,11 +45,69 @@ else{
         </div>
     </nav>
         <div class="container text-center">
-        <div class="row">
-            <div class="text-left">
-            <button type="button" class="btn btn-info">Mes candidatures</button><p><br></p>
+            
+        <!-- Affichage des propres candidatures du user actif -->
+        <?php
+            
+            //Vérification s'il faut afficher les candidatures ou non 
+            if(isset($_GET['afficher_candidatures'])){ //Si on a cliqué sur le bouton, on reçoit une variable afficher_candidature
+                    
+                if($_GET['afficher_candidatures'] == "1"){ //si la variable est à 1, on affiche toutes les infos 
+
+                    //Selection des candidatures du user actif
+                    $sql = "SELECT id_offre,metiers,description,titre,entreprise FROM emplois INNER JOIN candidature ON candidature.id_offre_postulee= emplois.id_offre WHERE candidature.id_candidat= '".$id."' ";
+                    $recu = mysqli_query($db_handle, $sql) ;
+                    
+                    $boutton_annonce= "Annuler la Candidature";
+                    $boutton_looking = "btn-danger";
+                    $boutton_afficher= "Afficher les offres d'emplois";
+                    $page_traitement = "traitement_suppression_postulat.php";
+                    
+                    //On change la variable 
+                    $afficher_candidature = "0";
+                }
+                if($_GET['afficher_candidatures'] == "0"){ //si la variable est à 1, on affiche toutes les infos 
+
+                    //Selection des propositions de postes
+                    $sql = "SELECT * FROM emplois ";
+                    $recu = mysqli_query($db_handle, $sql) ;
+
+                    $boutton_annonce= "Postuler";
+                    $boutton_looking = "btn-info";
+                    $boutton_afficher= "Afficher mes Candidatures";
+                    $page_traitement = "traitement_postulat.php";
+                    
+
+                    $afficher_candidature = "1";
+                }
+            } 
+            else{  
+                
+                //Selection des propositions de postes
+                $sql = "SELECT * FROM emplois ";
+                $recu = mysqli_query($db_handle, $sql) ;
+                
+                $boutton_annonce= "Postuler";
+                $boutton_looking = "btn-info";
+                $boutton_afficher= "Afficher mes Candidatures";
+                $page_traitement = "traitement_postulat.php";
+                
+                $afficher_candidature = "1";
+            }
+            
+            echo '
+            <div class="row">
+                <div class="text-left">
+                    <a href ="emplois.php?afficher_candidatures= '.$afficher_candidature.' "><button type="button" class="btn btn-info">'.$boutton_afficher.'</button><p><br></p></a>
+                </div>
             </div>
-         
+            
+            ';
+            
+        ?>
+            
+        <!--Nouvelles propositions de postes -->
+        <div class="row">
             <?php
             
                 while ($resultat = mysqli_fetch_assoc($recu)) {
@@ -85,12 +135,10 @@ else{
                             </div>
 
                             <div class="row">
-                                <a href ="traitement_postulat.php?id_offre='.$id_offre[$i].'"><button type="button" class="btn btn-info">Postuler</button></a>
+                                <a href ="'.$page_traitement.'?id_offre='.$id_offre[$i].'"><button type="button" class="btn '.$boutton_looking.'">'.$boutton_annonce.'</button></a>
                             </div>
                         </div>
                 </div>
-                
-               
                 
                 '; 
                 

@@ -10,7 +10,7 @@ include 'connexion_bdd.php';
 
 if($db_found){
 	
-	$sql = "SELECT nom,prenom,pp,mail FROM amitie INNER JOIN user ON user.id=amitie.id2 WHERE `id1` = '".$id."'";
+	$sql = "SELECT nom,prenom,pp,mail,id FROM amitie INNER JOIN user ON user.id=amitie.id2 WHERE `id1` = '".$id."'";
 	$recu = mysqli_query($db_handle, $sql) ;
 	$nom=array();
 	$i=0;
@@ -33,6 +33,7 @@ else{
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="general.css">
 	</head>
 </head>
 <body>
@@ -74,8 +75,8 @@ else{
 				$name[$i] = $resultat['prenom']." ".$resultat['nom'];
 				$mail[$i]=$resultat['mail'];
 				$profilpicture[$i]=$resultat['pp'];
+                $id_ami[$i] = $resultat['id'];
 				
-
 			echo'
 			
 				<div class="col-sm-3">
@@ -86,7 +87,7 @@ else{
 							<a href="mailto:jean-pierre.segado@ece.fr">'.$mail[$i].'</a></p>
 						</div>
 						<div class="row">
-							<button type="button" class="btn btn-outline-secondary btn-xs">Supprimer</button>
+							<a href="traitement_suppression_ami.php?ami_supprime='.$id_ami[$i].'"><button type="button" class="btn btn-outline-secondary btn-xs">Supprimer</button></a>
 							<button type="button" class="btn btn-outline-secondary btn-xs">Messagerie</button>
 						</div>
 					</div>
