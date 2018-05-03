@@ -15,8 +15,14 @@
     
     <h1>LinkECE</h1>
     <h2> Connexion </h2>
+    
+        <?php
+            if(isset($_GET['number'])){
+                echo $_GET['number'];
+            }
+        ?>
 
-     <form method = "post" action ="traitement_connexion.php" onsubmit="return  checkChampsVides(this)">
+     <form method = "post" action ="traitement_connexion.php" onsubmit="return checkChampsVides(this)">
         <input type="radio" name="type_user" id="admin" value="admin" >Administrateur<br>
         <input type="radio" name="type_user" id="utilisateur" value="utilisateur">Utilisateur <br>
         E-mail : 
@@ -27,10 +33,10 @@
     </form>
     
 
-    <a href="modifier.html"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
+    <a href="modifier.php"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
 
   <h3> Pas de compte? Inscrivez-vous!</h3>
-  <a href="inscription.html"> <input type="submit" name="inscription" value="S'inscrire" > </a>
+  <a href="inscription.php"> <input type="submit" name="inscription" value="S'inscrire" > </a>
 
 </body>
 

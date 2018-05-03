@@ -5,6 +5,23 @@ $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
 $test=$_SESSION['test'];
+$id=$_SESSION['id'];
+
+include 'connexion_bdd.php';
+
+if($db_found){
+	
+	$sql = "SELECT COUNT(id1) AS nb FROM amitie WHERE `id1` = '".$id."'";
+	$recu = mysqli_query($db_handle, $sql) ;
+	$resultat = mysqli_fetch_assoc($recu);
+	$_SESSION['nbamis']=$resultat['nb'];
+    
+}
+else{
+	die('Arrêt du script; Bdd non trouvée');
+}
+
+
 
 
 ?>
@@ -23,7 +40,7 @@ $test=$_SESSION['test'];
 
 </head>
 <body>
-	<nav class="navbar navbar-default" id="tabcol">
+	   <nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
@@ -51,11 +68,12 @@ $test=$_SESSION['test'];
 
 			<div class="col-sm-3 well">
 				<div class="well">
+
 					<?php echo '<p><a href="mur.php">Bonjour '.$prenom.' ! </a></p>' ?>
 					<img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="65" width="65" alt="Avatar">
 				</div>
 				<div class="well">
-					<?php echo '<p>Vous avez<br>'.$test.'<br>relations</p> ' ?>
+					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
 
 			</div>

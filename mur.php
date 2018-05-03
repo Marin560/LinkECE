@@ -1,10 +1,10 @@
 <?php
-
-session_start();
-$prenom=$_SESSION['prenom'];
-$pp=$_SESSION['pp'];
-$repertoire = $_SESSION['repertoire'];
-
+    session_start();
+    $prenom=$_SESSION['prenom'];
+    $pp=$_SESSION['pp'];
+    $repertoire = $_SESSION['repertoire'];
+    $id=$_SESSION['id'];
+    include 'connexion_bdd.php';
 ?>
 
 
@@ -73,7 +73,7 @@ $repertoire = $_SESSION['repertoire'];
 						
 					</div>
 				<div class="well">
-					<p>Vous avez<br>220<br>relations</p>
+					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
 			</div>
 

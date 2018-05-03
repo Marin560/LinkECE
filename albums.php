@@ -4,6 +4,46 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$id=$_SESSION['id'];
+
+
+
+include 'connexion_bdd.php';
+
+if($db_found){
+	
+	$sql = "SELECT DISTINCT id_photo, id_albumphotos FROM user INNER JOIN albums INNER JOIN photos WHERE `id_user` = '".$id."'";
+	$sql2= "SELECT DISTINCT nom_album FROM albums WHERE `id_user` = '".$id."'";
+	$recu = mysqli_query($db_handle, $sql);
+	$recu2 = mysqli_query($db_handle, $sql2);
+
+	$photos=array();
+	$albums=array();
+	$truc=array();
+	$i=0;
+
+	while($resultat = mysqli_fetch_assoc($recu)){
+
+		$photos[$i]=$resultat["id_photo"];
+		$albums[$i]=$resultat["id_albumphotos"];
+		$truc[$i]= $albums[$i].$photos[$i];
+		$i++;
+	}
+
+	$albums2=array();
+	$j=0;
+
+	while($resultat2 = mysqli_fetch_assoc($recu2)){
+
+		$albums2[$j]=$resultat2["nom_album"];
+		$j++;
+	}
+
+
+}
+else{
+	die('Arrêt du script; Bdd non trouvée');
+}
 
 ?>
 
@@ -17,7 +57,7 @@ $repertoire = $_SESSION['repertoire'];
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="general.css">
+	<link rel="stylesheet" href="general.css">
 
 </head>
 
@@ -50,44 +90,51 @@ $repertoire = $_SESSION['repertoire'];
 				<div class="col-sm-5">
 					<div class="row well">
 						<p>Photos</p>
+
+
 						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[0]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[1]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[2]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-12"><br></div>
 						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[3]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-4">
-							<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[4]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
 						<div class="col-sm-4">
-							<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
+							<img src="<?php echo $repertoire.$truc[5]; ?>" class="img-thumbnail" class="img-fluid" alt="Photo">
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="col-sm-2">
-					
+
 				</div>
 				<div class="col-sm-5">
-					<div class="row well">
+					<div class="row well ">
 						<p>Albums</p>
-						<div class="col-sm-6"><a href="#"><img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar"></a></div>
-						<div class="col-sm-6"><a href="#"><img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar"></a></div>
-						<div class="col-sm-12"><br></div>
-						<div class="col-sm-6"><a href="#"><img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar"></a></div>
-						<div class="col-sm-6"><a href="#"><img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar"></a></div>
+						<div class="col-sm-12 ">
+						<div class="col-sm-5">
+						<div class="row well "><a href='#'><p> <?php echo $albums2[0]; ?> </p></a></div>	
 					</div>
+					<div class="col-sm-2"></div>
+						<div class="col-sm-5">	
+						<div class="row well " ><a href='#'><p> <?php echo $albums2[1]; ?> </p></a></div>
+					</div>
+					</div>
+						</div>
+						</div>
+					
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 
 </html>
