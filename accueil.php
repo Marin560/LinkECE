@@ -16,8 +16,14 @@ if($db_found){
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb'];
 
+	$sql1 = "SELECT DISTINCT prenom, nom, pp, description FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 WHERE amitie.id1='".$id."'";
+
+
+	$recu1 = mysqli_query($db_handle, $sql1) ;
 	
-    
+	
+
+
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
@@ -42,7 +48,7 @@ else{
 
 </head>
 <body>
-	   <nav class="navbar navbar-default" id="tabcol">
+	<nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
@@ -116,22 +122,33 @@ else{
 						</div>
 					</div>
 				</div>
-				<div class="px-2">
+				<?php
+
+				while ($publiamis = mysqli_fetch_assoc($recu1)) {
+
+					$name[$i] = $publiamis['prenom']." ".$publiamis['nom'];
+					$des[$i]=$publiamis['description'];
+					$photo[$i]=$publiamis['pp'];
+
+					
+
+					echo '
+				
 					<div class="row well">
 						<div class="col-sm-12">
 							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
+								<p>'.$name[$i].'</p>
+								<img src="'.$repertoire.$photo[$i].'" class="img-circle" height="55" width="55" alt="Avatar">
 							</div>
 							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
+								<p>'.$des[$i].'</p>
 							</div>  
 							<div class="col-sm-1">
 								<button type="button" class="btn btn-primary btn-xs">...</button>
 							</div> 
 							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
+									<button type="button" class="btn btn-primary btn-sm">J aime</button>
 									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
 									<button type="button" class="btn btn-primary btn-sm">Partager</button>
 								</div>
@@ -139,77 +156,12 @@ else{
 						</div>
 					</div>
 
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
-						</div>
-					</div>
+					';
+				$i++;
+				};
+				?>
 
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="row well">
-						<div class="col-sm-12">
-							<div class="col-sm-3">
-								<p>John</p>
-								<img src="bird.jpg" class="img-circle" height="55" width="55" alt="Avatar">
-							</div>
-							<div class="col-sm-8">
-								<p>Just Forgot that I had to mention something about someone to someone about how I forgot something, but now I forgot it. Ahh, forget it! Or wait. I remember.... no I don't.</p>
-							</div>
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J'aime</button>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
-
-
-
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>
