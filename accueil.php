@@ -10,11 +10,11 @@ $id=$_SESSION['id'];
 include 'connexion_bdd.php';
 
 if($db_found){
-	
+	//On compte le nombre d'amis de l'utilisateur
 	$sql = "SELECT COUNT(id1) AS nb FROM amitie WHERE `id1` = '".$id."'";
 	$recu = mysqli_query($db_handle, $sql) ;
 	$resultat = mysqli_fetch_assoc($recu);
-	$_SESSION['nbamis']=$resultat['nb'];
+	$_SESSION['nbamis']=$resultat['nb']; //C'est le nombre d'amis de l'utilisateur
 
 	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id2 WHERE amitie.id1= '".$id."' ";
 
@@ -56,12 +56,7 @@ else{
 				<li><a href="albums.php">Photos</a></li>
 			</ul>
             <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left" action="/action_page.php">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+                <li><a href="afficher_tous_utilisateurs.php"><span class="glyphicon glyphicon-search "></span>Rechercher un User</a></li>
 				<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
 			</ul>
             

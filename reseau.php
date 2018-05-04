@@ -21,7 +21,6 @@ else{
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
 
@@ -67,40 +66,17 @@ else{
 					<input type="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Rechercher...">
 				</div>
 			</form>
-
-			<?php 
-
-			while ($resultat = mysqli_fetch_assoc($recu)) {
-
-				$name[$i] = $resultat['prenom']." ".$resultat['nom'];
-				$mail[$i]=$resultat['mail'];
-				$profilpicture[$i]=$resultat['pp'];
-                $id_ami[$i] = $resultat['id'];
-				
-			echo'
-			
-				<div class="col-sm-3">
-					<div class="well">
-						<p><a href="#">'.$name[$i].'</a></p>
-						<img src="'.$repertoire.$profilpicture[$i].'" class="img-circle" height="65" width="65" alt="Avatar">
-						<div class="row">
-							<a href="mailto:jean-pierre.segado@ece.fr">'.$mail[$i].'</a></p>
-						</div>
-						<div class="row">
-							<a href="traitement_suppression_ami.php?ami_supprime='.$id_ami[$i].'"><button type="button" class="btn btn-outline-secondary btn-xs">Supprimer</button></a>
-							<button type="button" class="btn btn-outline-secondary btn-xs">Messagerie</button>
-						</div>
-					</div>
-				</div>
-			
-			
-			' ;
-			$i++;
-
-			};
-			?>
+           
+            <?php 
+            
+            //Je set la variable pour le bouton de l'utilisateur
+            $bouton_action_amitie = "Supprimer";
+            
+            include("affichage_utilisateurs.php"); 
+            ?>
+            
 		</div>
-		
+    </div>
 	</body>
 
 	</html>
