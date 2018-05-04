@@ -51,7 +51,7 @@
 
 
 </form>
-<a href="connexion.html"> <input type="submit" name="connexionretour" value="Retour à la page de connexion" style="background-color: #A52A2A"  > </a>
+<a href="connexion.php"> <input type="submit" name="connexionretour" value="Retour à la page de connexion" style="background-color: #A52A2A"  > </a>
 
 
 

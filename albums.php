@@ -75,7 +75,8 @@ else{
 		<div class="row">
 			<div class="col-sm-12">
                 <div class="col-sm-5">
-					<div class="row well"><a href = "visionner_photos.php"<p>Photos</p></a>
+					<div class="row well"><a href = "visionner_photos.php" > Afficher toutes les photos </a> <a href = "ajouter_photos.php"><p>Ajouter des photos</p></a> 
+
                         <!-- php -->
                         <?php 
                         while($resultat = mysqli_fetch_assoc($recu)){
