@@ -23,6 +23,7 @@ if(isset($_GET['id_offre'])){
         //Je renvoie vers une nouvelle page
         header("Location: emplois.php?afficher_candidatures=1");
         
+        
     }
     else{
 	die('Arrêt du script; Bdd non trouvée');
