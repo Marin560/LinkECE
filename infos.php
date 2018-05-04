@@ -11,7 +11,6 @@ include 'connexion_bdd.php';
 
 if($db_found){
 	
-
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
