@@ -23,8 +23,7 @@
         ?>
 
      <form method = "post" action ="traitement_connexion.php" onsubmit="return checkChampsVides(this)">
-        <input type="radio" name="type_user" id="admin" value="admin" >Administrateur<br>
-        <input type="radio" name="type_user" id="utilisateur" value="utilisateur">Utilisateur <br>
+        
         E-mail : 
         <input type="text" name="email" id="email" placeholder="Votre e-mail.." onblur="verifEmail(this)" > 
         Mot de passe : 
