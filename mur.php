@@ -12,7 +12,7 @@ include 'connexion_bdd.php';
 if($db_found){
 	
 
-	$sql1 = "SELECT id_publi, nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user WHERE `id_user`='".$id."'";
+	$sql1 = "SELECT id_publi, nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user  WHERE `id_user`='".$id."' ORDER BY id_publi DESC";
 	$recu1 = mysqli_query($db_handle, $sql1) ;
 }
 else{
@@ -42,13 +42,10 @@ else{
 				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
             
-            <ul class="nav navbar-nav">
-            <li class="active"><a href="mur.php"> <?php echo $prenom ; ?></a></li>
-            </ul>
-            
 			<ul class="nav navbar-nav navbar-center">
 				<li><a href="accueil.php">Accueil</a></li>
 				<li><a href="reseau.php">Mon réseau</a></li>
+                <li class="active"><a href="mur.php"> <?php echo $prenom ; ?></a></li>
 				<li><a href="notifications.php">Notifications</a></li>
 				<li><a href="messagerie.php">Messagerie</a></li>
 				<li><a href="emplois.php">Emplois</a></li>
@@ -101,31 +98,31 @@ else{
 					<div class="col-sm-12">
 						<div class="panel panel-default text-left">
 							<div class="panel-body">
-								<textarea  placeholder="Exprimez-vous... " rows="3" cols="85" class="area"></textarea> 
-
-
-								<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-									<div class="btn-group mr-2" role="group" aria-label="First group">
-										<button type="button" class="btn btn-primary">Photo</button>
-										<button type="button" class="btn btn-primary">Vidéo</button>
-										<button type="button" class="btn btn-primary">Humeur</button>
-										<button type="button" class="btn btn-primary">Activité</button>
-									</div>
-									<div class="btn-group mr-2" role="group" aria-label="Second group">
-										<button type="button" class="btn btn-primary">Je suis à</button>
-										<button type="button" class="btn btn-primary">Date</button>
-									</div>  
-									<div class="btn-group mr-2" role="group" aria-label="Third group">
-										<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Confidentialité</button>
-										<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-											<button type="button" class="btn btn-secondary">Private</button>
-											<button type="button" class="btn btn-secondary">Public</button>
-										</div>
-									</div>
-									<div class="btn-group" role="group" aria-label="Fourth group">
-										<button type="button" class="btn btn-primary">Publier</button>
-									</div>
-								</div>
+                                <form method = "post" action ="traitement_nouveau_post.php">
+                                    <textarea  placeholder="Exprimez-vous... " name="texte_user" rows="3" cols="85" class="area"></textarea>
+                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                                            <button type="button" class="btn btn-primary">Photo</button>
+                                            <button type="button" class="btn btn-primary">Vidéo</button>
+                                            <button type="button" class="btn btn-primary">Humeur</button>
+                                            <button type="button" class="btn btn-primary">Activité</button>
+                                        </div>
+                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
+                                            <button type="button" class="btn btn-primary">Je suis à</button>
+                                            <button type="button" class="btn btn-primary">Date</button>
+                                        </div>  
+                                        <div class="btn-group mr-2" role="group" aria-label="Third group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Confidentialité</button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <button type="button" class="btn btn-secondary">Private</button>
+                                                <button type="button" class="btn btn-secondary">Public</button>
+                                            </div>
+                                        </div>  
+                                        <div class="btn-group" role="group" aria-label="Fourth group">
+                                            <input type="submit" class="btn btn-primary" value="publier">
+                                        </div>
+                                    </div>
+                                </form>
 
 							</div>  
 						</div>
@@ -134,39 +131,41 @@ else{
 				
 				<?php 
 
-			while ($resultatpubli = mysqli_fetch_assoc($recu1)) {
-                
-                //Affichage des postes
-				$name[$i] = $_SESSION['prenom']." ".$_SESSION['nom'];
-				$mail[$i]=$_SESSION['mail'];
-				$des[$i]=$resultatpubli['description'];
-                $id_publi[$i] = $resultatpubli['id_publi'];
+                while ($resultatpubli = mysqli_fetch_assoc($recu1)) {
 
-			echo '
-                <div class="col-sm-12">
-				    <div class="row well">
-						<div class="col-sm-3">
-							<p>'.$name[$i].'</p>
-							<img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
-						</div>
-						<div class="col-sm-8">
-							<p>'.$des[$i].'</p>      
-						</div>  
-						<div class="col-sm-1">
-							<a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
-						</div> 
-						<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-							<div class="btn-group mr-2" role="group" aria-label="First group">
-								<button type="button" class="btn btn-primary btn-sm">J aime</button>
-								<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-							</div>
-						</div>    
-					</div>
-				</div>
+                    //Affichage des postes
+                    $name[$i] = $_SESSION['prenom']." ".$_SESSION['nom'];
+                    $mail[$i]=$_SESSION['mail'];
+                    $des[$i]=$resultatpubli['description'];
+                    $id_publi[$i] = $resultatpubli['id_publi'];
 
-				';
-				$i++;
-			};
+                echo '
+                    <div class="col-sm-12">
+                        <div class="row well">
+                            <div class="col-sm-3">
+                                <p>'.$name[$i].'</p>
+                                <img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
+                            </div>
+                            <div class="col-sm-8">
+                                <p class="text-left">'.$des[$i].'</p>      
+                            </div> 
+                            <div class="col-sm-1">
+                                <a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
+                            </div> 
+                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-primary btn-sm">J aime</button>
+                                    <button type="button" class="btn btn-primary btn-sm">Commenter</button>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+
+                    ';
+                    
+                    
+                    $i++;
+                };
 				?>
 				
 			</div>

@@ -16,21 +16,14 @@ if($db_found){
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb'];
 
-	$sql1 = "SELECT DISTINCT prenom, nom, pp, description FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 WHERE amitie.id1='".$id."'";
-
+	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id1 WHERE amitie.id1='".$id."'";
 
 	$recu1 = mysqli_query($db_handle, $sql1) ;
-	
-	
-
 
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
 }
-
-
-
 
 ?>
 
@@ -92,31 +85,16 @@ else{
 					<div class="col-sm-12">
 						<div class="panel panel-default text-left">
 							<div class="panel-body">
-								<textarea  placeholder="Exprimez-vous... " rows="3" cols="85" class="area"></textarea> 
-
-
-								<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-									<div class="btn-group mr-2" role="group" aria-label="First group">
-										<button type="button" class="btn btn-primary">Photo</button>
-										<button type="button" class="btn btn-primary">Vidéo</button>
-										<button type="button" class="btn btn-primary">Humeur</button>
-										<button type="button" class="btn btn-primary">Activité</button>
-									</div>
-									<div class="btn-group mr-2" role="group" aria-label="Second group">
-										<button type="button" class="btn btn-primary">Je suis à</button>
-										<button type="button" class="btn btn-primary">Date</button>
-									</div>  
-									<div class="btn-group mr-2" role="group" aria-label="Third group">
-										<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Confidentialité</button>
-										<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-											<button type="button" class="btn btn-secondary">Private</button>
-											<button type="button" class="btn btn-secondary">Public</button>
-										</div>
-									</div>
+	
+                            <form method = "post" action ="traitement_nouveau_post.php">
+                                <textarea  placeholder="Exprimez-vous... " name="texte_user" rows="3" cols="85" class="area"></textarea> 
+                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 									<div class="btn-group" role="group" aria-label="Fourth group">
-										<button type="button" class="btn btn-primary">Publier</button>
+                                        <input type="submit" name="Publier" class="btn btn-primary" value="Publier">
+                                        <input type="submit" name="Changer" class="btn btn-primary" value="Changer">
 									</div>
 								</div>
+                            </form>
 
 							</div>  
 						</div>
@@ -127,35 +105,51 @@ else{
 				while ($publiamis = mysqli_fetch_assoc($recu1)) {
 
 					$name[$i] = $publiamis['prenom']." ".$publiamis['nom'];
-					$des[$i]=$publiamis['description'];
+					$description[$i]=$publiamis['description'];
 					$photo[$i]=$publiamis['pp'];
-
-					
-
+                    $id_publi[$i]=$publiamis['id_publi'];
+                    $nb_likes[$i]=$publiamis['nb_likes'];
+                    
+                    //Je vérifie si il existe un j'aime du user pour cette publication
+                    $sql2 = "SELECT * FROM publi_aimee WHERE id_publi = '". $id_publi[$i]."' AND id_user = '".$id."' ";
+                    $recu2 = mysqli_query($db_handle, $sql2) ;
+                    
+                    $resultat = mysqli_fetch_assoc($recu2);  
+                    
+                    if($resultat['id_publi'] == 0){
+                        $boutton_jaime = "J'aime";
+                    }
+                    else{
+                        
+                        $boutton_jaime = "Je n'aime plus";
+                    }
+                    
 					echo '
-				
-					<div class="row well">
-						<div class="col-sm-12">
+                    
+					<div class="col-sm-12">
+						<div class="row well">
 							<div class="col-sm-3">
 								<p>'.$name[$i].'</p>
 								<img src="'.$repertoire.$photo[$i].'" class="img-circle" height="55" width="55" alt="Avatar">
+                                <p><br>'.$nb_likes[$i].' Likes</p>
 							</div>
 							<div class="col-sm-8">
-								<p>'.$des[$i].'</p>
+								<p>'.$description[$i].'
 							</div>  
 							<div class="col-sm-1">
 								<button type="button" class="btn btn-primary btn-xs">...</button>
 							</div> 
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+							     </p><br><br><br><br>
+                               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn btn-primary btn-sm">J aime</button>
+									<a href="jaime.php?id_publi= '.$id_publi[$i].' &amp; action= '.$boutton_jaime.' "><button type="button" class="btn btn-primary btn-sm">'.$boutton_jaime.'</button></a>
 									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
 									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div>
-							</div>    
+								</div> 
+							</div> 
+                            
 						</div>
 					</div>
-
 					';
 				$i++;
 				};

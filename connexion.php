@@ -30,10 +30,8 @@
         Mot de passe : 
         <input type="text" name="mdp" id="mdp" placeholder="Votre mot de passe.." onblur="verifMdp(this)">   
         <input type="submit" name="Valider" value="Se connecter">
+        <input type="submit" name="Modifier" value="Modifier">
     </form>
-    
-
-    <a href="modifier.php"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
 
   <h3> Pas de compte? Inscrivez-vous!</h3>
   <a href="inscription.php"> <input type="submit" name="inscription" value="S'inscrire" > </a>
