@@ -1,5 +1,5 @@
 <?php  
-
+ header('Location: connexion.php');
 include 'connexion_bdd.php';
 
 

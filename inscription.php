@@ -18,23 +18,21 @@
 <?php
 
 
-
-
 echo'
 
 
 
   <form action ="traitement_inscription.php" method="post" >
     E-mail :
-    <input type="text" name="email" placeholder="Votre e-mail..." name = "email">
+    <input type="text"  placeholder="Votre e-mail..." name = "email">
     Mot de passe :
-    <input type="text" name="mdp" placeholder="Votre mot de passe..." name = "mdp">
+    <input type="text"  placeholder="Votre mot de passe..." name = "mdp">
     Nom :
-    <input type="text" name="nom" placeholder="Votre nom..." name ="nom">
+    <input type="text" placeholder="Votre nom..." name ="nom">
     Prénom :
-    <input type="text" name="prenom" placeholder="Votre prénom..." name = "prenom">  
+    <input type="text"  placeholder="Votre prénom..." name = "prenom">  
     Age :
-    <input type="text" name="age" placeholder="Votre âge..." name = "age">            
+    <input type="text"  placeholder="Votre âge..." name = "age">            
     
     <div class="form-group">
         Activité :
@@ -48,9 +46,9 @@ echo'
         </select>
     </div>
     Ville :
-    <input type="text" name="ville" placeholder="Votre ville..." name = "ville">
+    <input type="text"  placeholder="Votre ville..." name = "ville">
     Code postale :
-    <input type="text" name="codepostale" placeholder="Votre code postale..." name = "postale">
+    <input type="text" placeholder="Votre code postale..." name = "postale">
     CV :
     <div class="form-group">
         <input type="file" class="form-control-file" id="exampleFormControlFile1">
