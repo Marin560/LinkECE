@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$prenom=$_SESSION['prenom'];
+
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
 $id=$_SESSION['id'];
@@ -11,7 +11,9 @@ include 'connexion_bdd.php';
 
 if($db_found){
 	
-
+	$sql1 = "SELECT prenom, nom, age, ville, mdp, cv FROM informations INNER JOIN user ON id_user=id WHERE `id_user`='".$id."'";
+	$recu1 = mysqli_query($db_handle, $sql1) ;
+	
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
@@ -36,6 +38,39 @@ else{
 <body>
 
 <?php
+//Vérification s'il faut afficher les candidatures ou non 
+    if(isset($_GET['modif'])){ //Si on a cliqué sur le bouton, on reçoit une variable 
+                
+                $resultat = mysqli_fetch_assoc($recu1);
+
+               	$age = $resultat['age'];
+				$ville=$resultat['ville'];
+                $mdp=$resultat['mdp'];
+				$cv=$resultat['cv'];  
+				$prenom=$resultat['prenom'];
+				$nom=$resultat['nom']; 
+              	
+                    
+ 
+            }
+    else{  
+                
+                
+				
+				$resultat = mysqli_fetch_assoc($recu1);
+
+                $age = $resultat['age'];
+				$ville=$resultat['ville'];
+                $mdp=$resultat['mdp'];
+				$cv=$resultat['cv'];
+				$prenom=$resultat['prenom'];
+				$nom=$resultat['nom']; 
+
+                $modif = "0";
+
+            }
+
+
 echo '
 	<nav class="navbar navbar-default" id="tabcol">
 		<div class="container-fluid">
@@ -68,21 +103,29 @@ echo '
 		</div>
 		<div class="row">
 			<br>
-			<button type="button" class="btn btn-primary btn-sm">Modifier la photo</button>
+			<form>
+			<div class="form-group">
+<label for="exampleFormControlFile1">Modifier la photo</label>
+			<div class="col-sm-12">
+			<div class="col-sm-5"></div>
+			<div class="col-sm-2"><input type="file" name="cv" /></div>
+			<div class="col-sm-5"></div>
+			</div>
+			</form>
 		</div>
 		<br>
 		<div class="row well ">
 			<br>
 			
-			<form>
+			<form method = "post" action ="traitement_modifs_infos.php">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Prénom</label>
-					<input type="firstname" class="form-control" id="prenom">
+					<input type="firstname" class="form-control" name="prenom" value='.$prenom.'>
 
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Nom</label>
-					<input type="name" class="form-control" id="nom" >
+					<input type="name" class="form-control" name="nom" value='.$nom.'>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Activité</label>
@@ -95,21 +138,22 @@ echo '
 						<option>Employé</option>
 					</select>
 				</div>
-			</form>
+			
+
 			<div class="col-sm-4">
 				<div class="row">
-					<form>
+					
 						<div class="form-group">
 							<label for="exampleInputEmail1">Ville</label>
-							<input type="city" class="form-control" id="ville">
+							<input type="city" class="form-control" name="ville" value='.$ville.'>
 
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Age</label>
-							<input type="age" class="form-control" id="age" >
+							<input type="age" class="form-control" name="age" value='.$age.'>
 						</div>
 
-					</form>
+					
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -117,23 +161,27 @@ echo '
 					<br><br><br><br><br><br><br><br>
 				</div>
 				<div class="row">
-					<button type="button" class="btn btn-info btn-lg">Enregistrer les modifications</button>
+					 <a href ="accueil.php"><input type="submit" class="btn btn-info" value="Enregistrer les modifications"><p><br></p></a>
 				</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="row">
-					<form>
+					
 						<div class="form-group">
-							<label for="exampleInputEmail1">Code Postale</label>
-							<input type="postale" class="form-control" id="post">
+							<label for="exampleInputEmail1">Mot de passe</label>
+							<input type="postale" class="form-control" name="mdp" value='.$mdp.'>
 						</div>
 						<br>
 						<label for="exampleInputEmail1">CV : </label>
 						<button type="button" class="btn btn-danger btn-sm">Supprimer</button>
 							<div class="form-group">
-								<input type="file" class="form-control-file" id="exampleFormControlFile1">
+								<input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+								<input type="file" name="cv" />
+
+
+
 							</div>
-						
+	
 					</form>
 					
 				</div>
@@ -141,7 +189,10 @@ echo '
 		</div>
 	</div>
 </div>
+
 ';
+
+
 
 ?>
 </body>
