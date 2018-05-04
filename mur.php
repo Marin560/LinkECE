@@ -136,7 +136,7 @@ else{
 				$name[$i] = $_SESSION['prenom']." ".$_SESSION['nom'];
 				$mail[$i]=$_SESSION['mail'];
 				$des[$i]=$resultatpubli['description'];
-                $id_publi[$i] = $resultat['id_publi'];
+                $id_publi[$i] = $resultatpubli['id_publi'];
 
 			echo '
 				<div class="row well">
@@ -149,7 +149,7 @@ else{
 							<p>'.$des[$i].'</p>      
 						</div>  
 						<div class="col-sm-1">
-							<a href="traitement_suppression_post.php?id_publication='.$resultat['id_publi'].'"><button type="button" class="btn btn-primary btn-xs">Delete</button></a>
+							<a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-primary btn-xs">Delete</button></a>
 						</div> 
 						<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 							<div class="btn-group mr-2" role="group" aria-label="First group">

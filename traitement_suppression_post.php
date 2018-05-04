@@ -23,8 +23,7 @@ if(isset($_GET['id_publication'])){
         mysqli_query($db_handle, $sql);
 
         //Je renvoie vers une nouvelle page
-        //header("Location: emplois.php?afficher_candidatures=1");
-        echo $id_publication;
+        header("Location: mur.php");
     }
 }
 else {
