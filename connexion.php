@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
-<link rel="stylesheet" type = "text/css" href="connexion.css" media ="all"/>  
-<title>Page de connexion LinkECE</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="connexion.css" media ="all"/>
+    <script type="text/javascript" src="monscript.js"></script>
+    <title>Page de connexion LinkECE</title>
 <head>
 
- <p class="logo"> <img src="ece.jpg" alt = "ECE" height =300 width = 300></p>
- <h1>LinkECE</h1>
- <h2> Connexion </h2>
-
+    <p class="logo"><img src="ece.jpg" alt = "ECE" height =300 width = 300></p>
+     <font color="#FFFFFF"><h1>LinkECE<br>Connexion</h1></font>
 </head>
 
 <body>
 
         <?php
-            if(isset($_GET['number'])){
-                echo $_GET['number'];
+            if(isset($_GET['information'])){
+                //Si on reçoit un problème de connexion ou de mdp/mail, on affiche l'erreur
+                echo $_GET['information'];
             }
         ?>
 
@@ -29,8 +29,6 @@
         <input type="submit" name="Valider" value="Se connecter">
     </form>
     
-     <a href="modifier.html"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
-
     <a href="modifier.php"><input type="submit" name="modifier" value="Modifier un utilisateur"></a>
 
   <h3> Pas de compte? Inscrivez-vous!</h3>
@@ -41,8 +39,8 @@
 
 <footer>
   <p>
-    <div id="footer">Copyright &copy; LinkECE<br /> 
-      <a href="mailto:linkece@gmail.com">linkece@gmail.com </a>
+    <div id="footer">Copyright &copy;LinkECE<br> 
+      <a href="mailto:linkece@gmail.com">linkece@gmail.com</a>
     </div>
   </p>
 </footer>

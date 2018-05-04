@@ -40,12 +40,12 @@ if($db_found){
             
         } 
         else{
-          echo "mauvais mot de passe";  
+          header("Location: connexion.php?information= Problème de connexion : Vérifiez votre mot de passe ou adresse email" );
         }
             
     }
     else{
-        echo "Adresse email non trouvée";
+        header("Location: connexion.php?information= Problème de connexion : Vérifiez votre mot de passe ou adresse email" );
     }
 
 }
