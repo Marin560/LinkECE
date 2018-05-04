@@ -9,15 +9,6 @@ $id=$_SESSION['id']; //Id de l'utilisateur en cours
 //Connexion à la bdd
 include 'connexion_bdd.php'; 
 
-
-if(isset($_POST['Changer'])){
-    echo "Changer";
-}
-else if(isset($_POST['Publier'])){
-    echo "publier";
-}
-
-/*
 if(isset($_POST['texte_user'])){   
     if(db_found){
         //Je fais ma requête SQL pour ajouter le poste
@@ -34,6 +25,6 @@ else {
 }
 
 
-*/
+
 
 ?>

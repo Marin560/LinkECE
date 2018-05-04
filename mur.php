@@ -29,7 +29,6 @@ else{
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="accueil.css">
-	<link rel="stylesheet" href="general.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -45,13 +44,19 @@ else{
 			<ul class="nav navbar-nav navbar-center">
 				<li><a href="accueil.php">Accueil</a></li>
 				<li><a href="reseau.php">Mon réseau</a></li>
-                <li class="active"><a href="mur.php"> <?php echo $prenom ; ?></a></li>
+                <li class="active"><a href="mur.php">Vous</a></li>
 				<li><a href="notifications.php">Notifications</a></li>
 				<li><a href="messagerie.php">Messagerie</a></li>
 				<li><a href="emplois.php">Emplois</a></li>
 				<li><a href="albums.php">Photos</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left" action="/action_page.php">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
 				<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
 			</ul>
 		</div>
@@ -98,32 +103,9 @@ else{
 					<div class="col-sm-12">
 						<div class="panel panel-default text-left">
 							<div class="panel-body">
-                                <form method = "post" action ="traitement_nouveau_post.php">
-                                    <textarea  placeholder="Exprimez-vous... " name="texte_user" rows="3" cols="85" class="area"></textarea>
-                                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                                            <button type="button" class="btn btn-primary">Photo</button>
-                                            <button type="button" class="btn btn-primary">Vidéo</button>
-                                            <button type="button" class="btn btn-primary">Humeur</button>
-                                            <button type="button" class="btn btn-primary">Activité</button>
-                                        </div>
-                                        <div class="btn-group mr-2" role="group" aria-label="Second group">
-                                            <button type="button" class="btn btn-primary">Je suis à</button>
-                                            <button type="button" class="btn btn-primary">Date</button>
-                                        </div>  
-                                        <div class="btn-group mr-2" role="group" aria-label="Third group">
-                                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Confidentialité</button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                <button type="button" class="btn btn-secondary">Private</button>
-                                                <button type="button" class="btn btn-secondary">Public</button>
-                                            </div>
-                                        </div>  
-                                        <div class="btn-group" role="group" aria-label="Fourth group">
-                                            <input type="submit" class="btn btn-primary" value="publier">
-                                        </div>
-                                    </div>
-                                </form>
-
+                              
+                                <?php include("nouveau_post.php"); ?>
+                                
 							</div>  
 						</div>
 					</div>
@@ -138,6 +120,7 @@ else{
                     $mail[$i]=$_SESSION['mail'];
                     $des[$i]=$resultatpubli['description'];
                     $id_publi[$i] = $resultatpubli['id_publi'];
+                    $nb_likes[$i]=$resultatpubli['nb_likes'];
 
                 echo '
                     <div class="col-sm-12">
@@ -145,6 +128,7 @@ else{
                             <div class="col-sm-3">
                                 <p>'.$name[$i].'</p>
                                 <img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
+                                <p><br>'.$nb_likes[$i].' Likes</p>
                             </div>
                             <div class="col-sm-8">
                                 <p class="text-left">'.$des[$i].'</p>      

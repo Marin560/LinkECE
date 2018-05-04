@@ -16,7 +16,7 @@ if($db_found){
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb'];
 
-	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id1 WHERE amitie.id1='".$id."'";
+	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id2 WHERE amitie.id1= '".$id."' ";
 
 	$recu1 = mysqli_query($db_handle, $sql1) ;
 
@@ -55,9 +55,16 @@ else{
 				<li><a href="emplois.php">Emplois</a></li>
 				<li><a href="albums.php">Photos</a></li>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left" action="/action_page.php">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form>
 				<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
 			</ul>
+            
 		</div>
 	</nav>
 
@@ -85,75 +92,16 @@ else{
 					<div class="col-sm-12">
 						<div class="panel panel-default text-left">
 							<div class="panel-body">
-	
-                            <form method = "post" action ="traitement_nouveau_post.php">
-                                <textarea  placeholder="Exprimez-vous... " name="texte_user" rows="3" cols="85" class="area"></textarea> 
-                                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-									<div class="btn-group" role="group" aria-label="Fourth group">
-                                        <input type="submit" name="Publier" class="btn btn-primary" value="Publier">
-                                        <input type="submit" name="Changer" class="btn btn-primary" value="Changer">
-									</div>
-								</div>
-                            </form>
+	                       
+                            <!-- code pour créer un nouveau post -->
+                            <?php  include("nouveau_post.php"); ?>
 
 							</div>  
 						</div>
 					</div>
 				</div>
-				<?php
-
-				while ($publiamis = mysqli_fetch_assoc($recu1)) {
-
-					$name[$i] = $publiamis['prenom']." ".$publiamis['nom'];
-					$description[$i]=$publiamis['description'];
-					$photo[$i]=$publiamis['pp'];
-                    $id_publi[$i]=$publiamis['id_publi'];
-                    $nb_likes[$i]=$publiamis['nb_likes'];
-                    
-                    //Je vérifie si il existe un j'aime du user pour cette publication
-                    $sql2 = "SELECT * FROM publi_aimee WHERE id_publi = '". $id_publi[$i]."' AND id_user = '".$id."' ";
-                    $recu2 = mysqli_query($db_handle, $sql2) ;
-                    
-                    $resultat = mysqli_fetch_assoc($recu2);  
-                    
-                    if($resultat['id_publi'] == 0){
-                        $boutton_jaime = "J'aime";
-                    }
-                    else{
-                        
-                        $boutton_jaime = "Je n'aime plus";
-                    }
-                    
-					echo '
-                    
-					<div class="col-sm-12">
-						<div class="row well">
-							<div class="col-sm-3">
-								<p>'.$name[$i].'</p>
-								<img src="'.$repertoire.$photo[$i].'" class="img-circle" height="55" width="55" alt="Avatar">
-                                <p><br>'.$nb_likes[$i].' Likes</p>
-							</div>
-							<div class="col-sm-8">
-								<p>'.$description[$i].'
-							</div>  
-							<div class="col-sm-1">
-								<button type="button" class="btn btn-primary btn-xs">...</button>
-							</div> 
-							     </p><br><br><br><br>
-                               <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<a href="jaime.php?id_publi= '.$id_publi[$i].' &amp; action= '.$boutton_jaime.' "><button type="button" class="btn btn-primary btn-sm">'.$boutton_jaime.'</button></a>
-									<button type="button" class="btn btn-primary btn-sm">Commenter</button>
-									<button type="button" class="btn btn-primary btn-sm">Partager</button>
-								</div> 
-							</div> 
-                            
-						</div>
-					</div>
-					';
-				$i++;
-				};
-				?>
+		      
+                <?php include("afficher_post.php"); ?>
 
 			</div>
 		</div>
