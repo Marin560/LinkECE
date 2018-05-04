@@ -4,15 +4,12 @@ session_start();
 
 //Connexion à la base de données
 include 'connexion_bdd.php';
-
+$alibitch=0;
 if($db_found){
     
-    if(isset($_POST['Modifier'])){
-        echo "Modifier";
-        $sql2 = "SELECT admin, mail FROM user WHERE admin= '1' ";
-        
-    }
-    else if(isset($_POST['Valider'])){
+
+
+    if (isset($_POST['Valider'])){
         //On vérifie que le mail existe bien dans la base de données    
         $sql = "SELECT id, prenom, pp, mdp, mail, nom FROM user WHERE mail = '".$_POST['email']."' ";
 
@@ -47,6 +44,29 @@ if($db_found){
             header("Location: connexion.php?information= Problème de connexion : Vérifiez votre mot de passe ou adresse email" );
         }
     }
+       else  if(isset($_POST['Modifier'])) {
+
+    
+        $sql2 = "SELECT mail FROM user WHERE admin= '1' AND mail= '".$_POST['email']."'";
+        $recu2 = mysqli_query($db_handle, $sql2);
+       
+
+                    while( $resultat2=mysqli_fetch_assoc($recu2)){
+  
+                     header("Location: modifier.php");
+                     $alibitch=1;
+                    
+                };
+            
+
+              if($alibitch!=1){
+                   
+                     header("Location: connexion.php?information= Problème de connexion : Vous n'etes pas admin" );
+                  }
+
+
+
+}
 } 
 
 else {
