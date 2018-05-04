@@ -15,21 +15,28 @@
 
 <body>
 
-  <form action ="connexion.php" method="post" >
+<?php
+
+
+echo'
+
+
+
+  <form action ="traitement_inscription.php" method="post" >
     E-mail :
-    <input type="text" name="email" placeholder="Votre e-mail...">
+    <input type="text"  placeholder="Votre e-mail..." name = "email">
     Mot de passe :
-    <input type="text" name="mdp" placeholder="Votre mot de passe...">
+    <input type="text"  placeholder="Votre mot de passe..." name = "mdp">
     Nom :
-    <input type="text" name="nom" placeholder="Votre nom...">
+    <input type="text" placeholder="Votre nom..." name ="nom">
     Prénom :
-    <input type="text" name="prenom" placeholder="Votre prénom...">  
+    <input type="text"  placeholder="Votre prénom..." name = "prenom">  
     Age :
-    <input type="text" name="age" placeholder="Votre âge...">            
+    <input type="text"  placeholder="Votre âge..." name = "age">            
     
     <div class="form-group">
         Activité :
-        <select type="activite" class="form-control form-control-lg" id="Activite" >
+        <select type="activite" class="form-control form-control-lg" id="Activite" name = "activite">
             <option>Etudiant en licence</option>
             <option>Etudiant en master</option>
             <option>Etudiant apprenti</option>
@@ -39,16 +46,21 @@
         </select>
     </div>
     Ville :
-    <input type="text" name="ville" placeholder="Votre ville...">
+    <input type="text"  placeholder="Votre ville..." name = "ville">
     Code postale :
-    <input type="text" name="codepostale" placeholder="Votre code postale...">
+    <input type="text" placeholder="Votre code postale..." name = "postale">
     CV :
     <div class="form-group">
         <input type="file" class="form-control-file" id="exampleFormControlFile1">
     </div>
 
-    <input type="submit" name="inscription" value="S'inscrire"  > 
+    <input type="submit" name="inscription" value="S inscrire"  > 
 
+';
+ 
+ 
+ 
+?>
 
 </form>
 <a href="connexion.php"> <input type="submit" name="connexionretour" value="Retour à la page de connexion" style="background-color: #A52A2A"  > </a>
