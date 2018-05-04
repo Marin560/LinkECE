@@ -41,10 +41,14 @@ else{
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"><img src="<?php echo $repertoire.$pp; ?>" class="img-circle" height="30" alt="Avatar"></a>
 			</div>
-			<ul class="nav navbar-nav">
+            
+            <ul class="nav navbar-nav">
+            <li class="active"><a href="mur.php"> <?php echo $prenom ; ?></a></li>
+            </ul>
+            
+			<ul class="nav navbar-nav navbar-center">
 				<li><a href="accueil.php">Accueil</a></li>
 				<li><a href="reseau.php">Mon réseau</a></li>
-				<li class="active"><a href="mur.php">Vous</a></li>
 				<li><a href="notifications.php">Notifications</a></li>
 				<li><a href="messagerie.php">Messagerie</a></li>
 				<li><a href="emplois.php">Emplois</a></li>
@@ -139,8 +143,8 @@ else{
                 $id_publi[$i] = $resultatpubli['id_publi'];
 
 			echo '
-				<div class="row well">
-					<div class="col-sm-12">
+                <div class="col-sm-12">
+				    <div class="row well">
 						<div class="col-sm-3">
 							<p>'.$name[$i].'</p>
 							<img src="'.$repertoire.$pp.'" class="img-circle" height="55" width="55" alt="Avatar">
@@ -149,7 +153,7 @@ else{
 							<p>'.$des[$i].'</p>      
 						</div>  
 						<div class="col-sm-1">
-							<a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-primary btn-xs">Delete</button></a>
+							<a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
 						</div> 
 						<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 							<div class="btn-group mr-2" role="group" aria-label="First group">
