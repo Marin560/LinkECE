@@ -40,12 +40,7 @@ $i=0;
             </ul>
             
             <ul class="nav navbar-nav navbar-right">
-            <form class="navbar-form navbar-left" action="/action_page.php">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+                <li><a href="afficher_tous_utilisateurs.php"><span class="glyphicon glyphicon-search "></span>Rechercher un User</a></li>
 				<li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
 			</ul>
         </div>

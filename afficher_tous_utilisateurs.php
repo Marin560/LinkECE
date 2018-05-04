@@ -13,17 +13,17 @@ if($db_found){
 
     if(isset($_POST['search'])){
         
+       //Prénom recherché par l'utilisateur
        $prenom_recherche = $_POST['search'];
         
-       //On compte le nombre d'amis de l'utilisateur
 	   $sql = "SELECT * FROM user WHERE prenom = '".$_POST['search']."' ";
 	   $recu = mysqli_query($db_handle, $sql) ;
        $i = 0;  
     } 
     
     if(isset($_GET['confirmation'])){
-                    //Je récupère mon nom d'alerte
-                    echo '<script type="text/javascript">window.alert("'.$_GET['confirmation'].'");</script>';
+        //Je récupère mon nom d'alerte
+        echo '<script type="text/javascript">window.alert("'.$_GET['confirmation'].'");</script>';
     }
     
 }
@@ -82,7 +82,6 @@ else{
             
 
             <?php if(isset($_POST['search'])){
-                $bouton_action_amitie = "Ajouter";
                 
                 include ("affichage_utilisateurs.php"); 
         } ?>
