@@ -19,12 +19,12 @@ if((isset($_GET['ami_action']))&&(isset($_GET['bouton_action']))){
         header("Location: reseau.php");
     }
     else{ 
-        //On fait le sql pour ajouter l'ami
-        $sql = "INSERT INTO `amitie` (`id1`, `id2`, `accepte`) VALUES ('".$id_user."', '".$ami."', '1') " ;
+        //On fait le sql pour ajouter l'ami - il va dans les nouvelles demandes d'amis
+        $sql = "INSERT INTO `notifications` (`id_asker`, `id_receiver`) VALUES ('".$id_user."', '".$ami."') " ;
         mysqli_query($db_handle, $sql) ;
         
         
-        header("Location: afficher_tous_utilisateurs.php?confirmation=Vous avez ajouté un nouveau contact ");
+        header("Location: afficher_tous_utilisateurs.php?confirmation=Vous avez envoyé une nouvelle demande d'amis ");
     }
     
 

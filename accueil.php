@@ -19,7 +19,6 @@ if($db_found){
 	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id2 WHERE amitie.id1= '".$id."' ";
 
 	$recu1 = mysqli_query($db_handle, $sql1) ;
-
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
