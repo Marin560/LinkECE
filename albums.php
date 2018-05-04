@@ -31,9 +31,6 @@ else{
 	die('Arrêt du script; Bdd non trouvée');
 }
 
-$_SESSION['album1']= $albums2[0];
-$_SESSION['album2']= $albums2[1];
-
 
 ?>
 
@@ -78,7 +75,7 @@ $_SESSION['album2']= $albums2[1];
 		<div class="row">
 			<div class="col-sm-12">
                 <div class="col-sm-5">
-					<div class="row well"><p>Photos</p>
+					<div class="row well"><a href = "visionner_photos.php"<p>Photos</p></a>
                         <!-- php -->
                         <?php 
                         while($resultat = mysqli_fetch_assoc($recu)){
