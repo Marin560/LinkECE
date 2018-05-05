@@ -4,9 +4,37 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$id = $_SESSION['id'];
+
+include("connexion_bdd.php");
+
+if(db_found){
+    
+    //Je fais ma requête sql pour récupérer toutes les demandes en ami
+    $sql = "SELECT id, nom, pp, prenom FROM user INNER JOIN notifications ON notifications.id_asker=user.id AND notifications.id_receiver= '".$id."' " ;
+    $recu = mysqli_query($db_handle, $sql) ;
+    $i= 0;
+    
+    if(isset($_GET['id_asker'])){
+        //La demande a été acceptée, on ajoute les deux amitiés
+        $sql = "INSERT INTO `amitie`(`id1`, `id2`) VALUES ('".$id."','".$_GET['id_asker']."') ";
+        mysqli_query($db_handle, $sql) ;   
+        
+        $sql = "INSERT INTO `amitie`(`id1`, `id2`) VALUES ('".$_GET['id_asker']."','".$id."') "; 
+        mysqli_query($db_handle, $sql) ;   
+        
+        //Puis on supprime la demande d'amitié
+        $sql = "DELETE FROM `notifications` WHERE id_asker = '".$_GET['id_asker']."' ";
+        mysqli_query($db_handle, $sql) ;   
+        
+        header("Location: notifications.php" );
+    }
+
+}
+else
+    die("Erreur sql");
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -40,76 +68,42 @@ $repertoire = $_SESSION['repertoire'];
 			</ul>
 		</div>
 	</nav>
+    
+    
+
+			
+    
+    
+    <?php 
+    while ($resultat = mysqli_fetch_assoc($recu)) {
+        
+        $name[$i] =  $resultat['prenom']." ".$resultat['nom']." ";
+        $photo_asker[$i] = $resultat['pp'];
+        $id_asker[$i]= $resultat['id'];
+        
+    echo '
+    
 	<div class="container text-center">
 		<div class="row"><br><br></div>
 		<div class="row">
 			<div class="col-sm-2"><br></div> 
 			<div class ="col-sm-8"> 
-
-				<div class="col-sm-3"> <img src ="images/diego.jpg" class="img-circle" height ="65" width="65"></div>
-
-
+				<div class="col-sm-3"><img src="'.$repertoire.$photo_asker[$i].'" class="img-circle" height="55" width="55" alt="Avatar"></div>
 				<div class="col-sm-9"> 
-					<div class="well"><p>Félicitez Diego Bazin pour son nouveau poste de stagiaire chez UPTOO</p> <button type="button" class="btn btn-info">Féliciter</button>
+					<div class="well"><p>'.$name[$i].'souhaite vous ajouter à sa liste de contacts</p> 
+                    <a href="?id_asker= '.$id_asker[$i].'"><button type="button" class="btn btn-success btn-sm">Accepter L\'invitation</button></a>
 					</div>
-
 				</div>
-
 			</div>
 			<div class="col-sm-2"><br></div> 
 		</div>
-		<div class="row">
-			<div class="col-sm-2"><br></div> 
-			<div class ="col-sm-8"> 
-
-				<div class="col-sm-3"> <img src ="images/albane.jpg" class="img-circle" height ="65" width="65"></div>
-
-
-				<div class="col-sm-9"> 
-					<div class="well"><p> Félicitez Albane Rouaix pour son nouveau poste de stagiaire chez Havas </p> <button type="button" class="btn btn-info">Féliciter</button></div>
-
-				</div>
-
-			</div>
-			<div class="col-sm-2"><br></div> 
-		</div>
-		<div class="row">
-			<div class="col-sm-2"><br></div> 
-			<div class ="col-sm-8"> 
-
-				<div class="col-sm-3"> <img src ="images/marin.jpg" class="img-circle" height ="65" width="65"></div>
-
-
-				<div class="col-sm-9"> 
-					<div class="well"><p>Marin Boone a accepté votre demande d'ajout</p><button type="button" class="btn btn-info">Envoyer un message</button>
-						<button type="button" class="btn btn-info">Retirer la relation</button>
-
-					</div>
-
-				</div>
-
-			</div>
-			<div class="col-sm-2"><br></div> 
-		</div>
-		<div class="row">
-			<div class="col-sm-2"><br></div> 
-			<div class ="col-sm-8"> 
-
-				<div class="col-sm-3"> <img src ="images/antoine.jpg" class="img-circle" height ="65" width="65"></div>
-
-
-				<div class="col-sm-9"> 
-					<div class="well"><p>Antoine Ewald souhaite vous ajouter à son réseau</p><button type="button" class="btn btn-info">Accepter</button> <button type="button" class="btn btn-info">Ignorer</button>
-</div>
-
-				</div>
-
-			</div>
-			<div class="col-sm-2"><br></div> 
-		</div>
-
-
-
-	</div>
-
-</body>
+    </div>
+    ';
+    
+    $i++;
+        
+    };
+    
+    ?>
+    </body>
+</html>

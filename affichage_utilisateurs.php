@@ -20,6 +20,7 @@
             //Il est déjà ami avec lui, on affiche le bouton supprimer
             $bouton_action_amitie = "Supprimer";
         }
+        
 			echo'
 			
 				<div class="col-sm-3">
