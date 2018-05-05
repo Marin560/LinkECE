@@ -35,7 +35,7 @@ if($db_found){
                 echo $_SESSION['repertoire'].$_SESSION['pp'] = $resultat['pp'];
                 
                 
-                //header("Location: accueil.php" );
+                header("Location: accueil.php" );
 
             } 
             else{

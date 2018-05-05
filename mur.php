@@ -104,7 +104,7 @@ else{
 					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
                 <div class="well">
-					<?php echo '<a href="images/CV/cv'.$id.'.pdf">Cliquez ici pour voir votre CV</a>' //Faut choper le bon nom ?>
+					<?php echo '<a href="images/CV/curu'.$id.'.pdf">Cliquez ici pour voir votre CV</a>' //Faut choper le bon nom ?>
 				</div>
 			</div>
 
@@ -132,7 +132,6 @@ else{
                     $des[$i]=$resultatpubli['description'];
                     $id_publi[$i] = $resultatpubli['id_publi'];
                     $nb_likes[$i]=$resultatpubli['nb_likes'];
-
 
 
                 echo '

@@ -29,7 +29,6 @@ else{
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="general.css">
  
  
 </head>
@@ -83,7 +82,8 @@ echo '
         <li ><a href="albums.php">Photos</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
+        <li><a href="afficher_tous_utilisateurs.php"><span class="glyphicon glyphicon-search "></span>Rechercher un User</a></li>
+            <li><a href="connexion.php"><span class="glyphicon glyphicon-log-in"></span> Déconnecter</a></li>
       </ul>
     </div>
         
@@ -150,7 +150,6 @@ echo '
               <label for="exampleInputPassword1">Age</label>
               <input type="age" class="form-control" name="age" value='.$age.'>
             </div>
- 
           
         </div>
         
@@ -171,11 +170,9 @@ echo '
               <input type="postale" class="form-control" name="mdp" value='.$mdp.'>
             </div>
             <br>
-            <label for="exampleInputEmail1">CV : </label>
-            <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+            <label for="exampleInputEmail1">Modifier votre CV : </label>
               <div class="form-group">
-                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
-                <input type="file" name="cv" />
+                <input type="file" name="fichiercv" id="fichiercv"/><br />    
              </div>
   
           </form>
