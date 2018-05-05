@@ -116,6 +116,8 @@ else{
                     $id_publi[$i] = $resultatpubli['id_publi'];
                     $nb_likes[$i]=$resultatpubli['nb_likes'];
 
+
+
                 echo '
                     <div class="col-sm-12">
                         <div class="row well">
@@ -138,6 +140,7 @@ else{
                             </div>    
                         </div>
                     </div>
+                    
 
                     ';
                     

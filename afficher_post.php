@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 while ($publiamis = mysqli_fetch_assoc($recu1)) {
 
 		$name[$i] = $publiamis['prenom']." ".$publiamis['nom'];
@@ -48,6 +51,16 @@ while ($publiamis = mysqli_fetch_assoc($recu1)) {
                             
 						</div>
 					</div>
+					<div class="col-sm-2">
+					</div>
+					<div class="col-sm-10">
+						<div class="row well">
+							<img src="'.$repertoire.$photo[$i].'" class="img-circle" height="55" width="55" alt="Avatar">
+						</div>
+					</div>
+
+
+
 					';
 				$i++;
 				};
