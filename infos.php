@@ -38,8 +38,7 @@ else{
  
 
 <?php
-//Vérification s'il faut afficher les candidatures ou non 
-    if(isset($_GET['modif'])){ //Si on a cliqué sur le bouton, on reçoit une variable 
+    if(isset($_GET['modif'])){ //Si les modifications ont bien eu lieu, on affiche d'autres résultat
                 
         $resultat = mysqli_fetch_assoc($recu1);
  
@@ -49,10 +48,9 @@ else{
         $cv=$resultat['cv'];  
         $prenom=$resultat['prenom'];
         $nom=$resultat['nom']; 
-                
-                    
+  
  
-            }
+    }
     else{  
             $resultat = mysqli_fetch_assoc($recu1);
  
@@ -66,6 +64,7 @@ else{
             $modif = "0";
  
     }
+    
  
  
 echo '
@@ -101,23 +100,22 @@ echo '
     </div>
     <div class="row">
       <br>
-      <form>
-      <div class="form-group">
-<label for="exampleFormControlFile1">Modifier la photo</label>
-      <div class="col-sm-12">
-      <div class="col-sm-5"></div>
-      <div class="col-sm-2"><input type="file" name="cv" /></div>
-      <div class="col-sm-5"></div>
-      
-      
-       </div>
-      </form>
+     <form method = "post" action ="traitement_modifs_infos.php" enctype="multipart/form-data">
+          <div class="form-group">
+          <label for="exampleFormControlFile1">Modifier la photo</label>
+          <div class="col-sm-12">
+          <div class="col-sm-5"></div>
+            <div class="form-group">
+                <input type="file" name="fichierpp" id="fichierpp"/><br />    
+            </div>
+          <div class="col-sm-5"></div>
+           </div>
     </div>
     <br>
     <div class="row well ">
       <br>
       
-      <form method = "post" action ="traitement_modifs_infos.php">
+      
         <div class="form-group">
           <label for="exampleInputEmail1">Prénom</label>
           <input type="firstname" class="form-control" name="prenom" value='.$prenom.'>
