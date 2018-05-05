@@ -3,6 +3,7 @@
 session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
+$repertoire_album = $_SESSION['repertoire_album'];
 $repertoire = $_SESSION['repertoire'];
 $id=$_SESSION['id'];
 
@@ -88,7 +89,7 @@ else{
 
                         echo '
                             <div class="col-sm-4">
-                                <img src="'.$repertoire.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
+                                <img src="'.$repertoire_album.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
                             </div>
                         ';
 

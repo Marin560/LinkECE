@@ -28,6 +28,7 @@ if($db_found){
                 $_SESSION['prenom'] = $resultat['prenom'];
                 $_SESSION['id'] = $resultat['id'];
                 $_SESSION['pp'] = $resultat['pp']; //Doit prendre le bon nom
+                $_SESSION['repertoire_album'] = "images/";
                 $_SESSION['repertoire'] = "images/PhotoProfil/";
                 $_SESSION['mail'] = $resultat['email'];
                 $_SESSION['nom'] = $resultat['nom'];

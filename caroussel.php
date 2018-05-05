@@ -4,6 +4,7 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$repertoire_album = $_SESSION['repertoire_album'];
 $id=$_SESSION['id'];
 
 include 'connexion_bdd.php';
@@ -59,11 +60,11 @@ else{
         </div>
 
         <div class="item">
-          <img src="<?php echo $repertoire.$truc[1]; ?>" alt="photo2" style="width:100%;" >
+          <img src="<?php echo $repertoire_album.$truc[1]; ?>" alt="photo2" style="width:100%;" >
         </div>
 
         <div class="item">
-          <img src="<?php echo $repertoire.$truc[2]; ?>" alt="photo3" style="width:100%;">
+          <img src="<?php echo $repertoire_album.$truc[2]; ?>" alt="photo3" style="width:100%;">
         </div>
       </div> 
     -->
@@ -75,14 +76,13 @@ else{
                         $photos[$h]=$resultat['id_photo'];
                         
                         $id_albumphotos[$h]=$resultat['id_albumphotos'];
-                       //echo $repertoire.$id_albumphotos[$h].$photos[$h];
                         echo '
                               <div class="item active">
-                              <img src="'.$repertoire.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
+                              <img src="'.$repertoire_album.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
                               </div>
                               
                                <div class="item ">
-                              <img src="'.$repertoire.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
+                              <img src="'.$repertoire_album.$id_albumphotos[$h].$photos[$h].'" alt="impossible de charger la photo" style="width:100%;">
                               </div>
                                
                         
