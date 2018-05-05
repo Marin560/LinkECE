@@ -22,7 +22,7 @@ echo'
 
 
 
-  <form action ="traitement_inscription.php" method="post" >
+  <form method="post"  action ="traitement_inscription.php" >
     E-mail :
     <input type="text"  placeholder="Votre e-mail..." name = "email">
     Mot de passe :
@@ -56,18 +56,18 @@ echo'
 
     <input type="submit" name="inscription" value="S inscrire"  > 
 
+
+
+<a href="connexion.php"> <input type="text" name="connexionretour" value="Retour à la page de connexion" style="background-color: #A52A2A"  > </a>
+</form>
+
+
+
 ';
  
  
  
 ?>
-
-</form>
-<a href="connexion.php"> <input type="submit" name="connexionretour" value="Retour à la page de connexion" style="background-color: #A52A2A"  > </a>
-
-
-
-
 
 
 
