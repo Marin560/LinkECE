@@ -26,11 +26,13 @@ if($db_found){
                 echo "Vous étiez".'<br/>';
 
                 $_SESSION['prenom'] = $resultat['prenom'];
-                $_SESSION['pp'] = $resultat['pp'];
-                $_SESSION['repertoire'] = "images/";
                 $_SESSION['id'] = $resultat['id'];
+                $_SESSION['pp'] = $resultat['pp']; //Doit prendre le bon nom
+                $_SESSION['repertoire'] = "images/PhotoProfil/";
                 $_SESSION['mail'] = $resultat['email'];
                 $_SESSION['nom'] = $resultat['nom'];
+                
+                echo $_SESSION['repertoire'].$_SESSION['pp'] = $resultat['pp'];
 
                 header("Location: accueil.php" );
 

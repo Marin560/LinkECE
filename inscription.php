@@ -44,10 +44,15 @@
                 <input type="text"  placeholder="Votre ville..." name = "ville">
                 Code postale :
                 <input type="text" placeholder="Votre code postale..." name = "postale">
+                
                 CV :
-
                 <div class="form-group">
-                    <input type="file" name="fichier" id="fichier"/><br />    
+                    <input type="file" name="fichiercv" id="fichiercv"/><br />    
+                </div>
+                
+                Photo de profil :
+                <div class="form-group">
+                    <input type="file" name="fichierphoto" id="fichierphoto"/><br />    
                 </div>
 
                 <input type="submit" name="inscription" value="Sinscrire"> 
