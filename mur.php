@@ -4,6 +4,7 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$repertoire_album = $_SESSION['repertoire_album'];
 $id=$_SESSION['id'];
 $profilpicture=$_SESSION['pp'];
 $i=0;
@@ -89,7 +90,7 @@ else{
 
                         echo '
                             <div class="col-sm-4">
-                                <img src="'.$repertoire.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
+                                <img src="'.$repertoire_album.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
                             </div>
                         ';
 
@@ -104,7 +105,7 @@ else{
 					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
                 <div class="well">
-					<?php echo '<a href="images/CV/cv'.$id.'.pdf">Cliquez ici pour voir votre CV</a>' //Faut choper le bon nom ?>
+					<?php echo '<a href="images/CV/curu'.$id.'.pdf">Cliquez ici pour voir votre CV</a>' //Faut choper le bon nom ?>
 				</div>
 			</div>
 
@@ -132,7 +133,6 @@ else{
                     $des[$i]=$resultatpubli['description'];
                     $id_publi[$i] = $resultatpubli['id_publi'];
                     $nb_likes[$i]=$resultatpubli['nb_likes'];
-
 
 
                 echo '

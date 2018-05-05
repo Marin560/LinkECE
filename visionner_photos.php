@@ -4,6 +4,7 @@ session_start();
 $prenom=$_SESSION['prenom'];
 $pp=$_SESSION['pp'];
 $repertoire = $_SESSION['repertoire'];
+$repertoire_album = $_SESSION['repertoire_album'];
 $id=$_SESSION['id'];
 
 include 'connexion_bdd.php';
@@ -43,25 +44,6 @@ else{
   <div class="container">
     <h2> Photos </h2>  
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      
-
-      <!-- Wrapper for slides -->
-   <!--  <div class="carousel-inner">
-
-        <div class="item active">
-          <img src="images/alienor.png" alt="photo1" style="width:100%;" >
-        </div>
-
-        <div class="item">
-          <img src="<?php echo $repertoire.$truc[1]; ?>" alt="photo2" style="width:100%;" >
-        </div>
-
-        <div class="item">
-          <img src="<?php echo $repertoire.$truc[2]; ?>" alt="photo3" style="width:100%;">
-        </div>
-      </div> 
-    -->
         <!-- php -->
             <div class="carousel-inner">
                         <?php 
@@ -72,11 +54,11 @@ else{
                         $truc[$i]= $albums[$i].$photos[$i];
                         echo '
                               <div class="item active">
-                              <img src="'.$repertoire.$truc[$i].'" alt="impossible de charger la photo" style="width:100%;">
+                              <img src="'.$repertoire_album.$truc[$i].'" alt="impossible de charger la photo" style="width:100%;">
                               </div>
                               
                                <div class="item ">
-                              <img src="'.$repertoire.$truc[$i].'" alt="impossible de charger la photo" style="width:100%;">
+                              <img src="'.$repertoire_album.$truc[$i].'" alt="impossible de charger la photo" style="width:100%;">
                               </div>
                                
                         

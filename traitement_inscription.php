@@ -32,7 +32,7 @@ if($db_found){
         
     if (in_array($extension_cv, $extensions_ok_cv)){
          echo $extension_cv;
-         $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\CV\cv".$id_nouveau.".".$extension_cv;
+         $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\CV\curu".$id_nouveau.".".$extension_cv;
          echo $nom;
          move_uploaded_file($_FILES['fichiercv']['tmp_name'],$nom);
     }
