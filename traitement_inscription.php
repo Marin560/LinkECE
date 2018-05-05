@@ -2,12 +2,13 @@
 
 session_start();
 
-//header('Location: connexion.php');
+header('Location: connexion.php');
 include 'connexion_bdd.php';
 
 
 
 if($db_found){
+    
     
     //On insère les données dans la bdd
     $sql1 = "INSERT INTO user (mail, prenom, nom, mdp) VALUES ('".$_POST['email']."' , '".$_POST['prenom']."' , '".$_POST['nom']."' , '".$_POST['mdp']."' ) ";
@@ -23,12 +24,42 @@ if($db_found){
     
     $id_nouveau = $resultat['id'];
     
-    $infosfichier = pathinfo($_FILES['fichier']['name']);
-    $extention = $infosfichier['extension'];
+    //Traitement cv
+    //On vérifie que c'est la bonne extension
+    $infosfichier = pathinfo($_FILES['fichiercv']['name']);
+    $extension_cv = $infosfichier['extension'];
+    echo $extension_cv;
+    $extensions_ok_cv = array('pdf');
+        
+    if (in_array($extension_cv, $extensions_ok_cv)){
+         echo $extension_cv;
+         $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\CV\cv".$id_nouveau.".".$extension_cv;
+         echo $nom;
+         move_uploaded_file($_FILES['fichiercv']['tmp_name'],$nom);
+    }
     
-    $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\CV\cv".$id_nouveau.".".$extention;
-    move_uploaded_file($_FILES['fichier']['tmp_name'],$nom);
     
+    //Traitement photo de profil
+    //On vérifie que c'est la bonne extension
+    $infosfichier = pathinfo($_FILES['fichierphoto']['name']);
+    $extension_pp = $infosfichier['extension'];
+    $extensions_ok_pp = array('jpg', 'jpeg', 'png');
+        
+    if (in_array($extension_pp, $extensions_ok_pp)){
+         
+        $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\PhotoProfil\pp".$id_nouveau.".".$extension_pp;
+        move_uploaded_file($_FILES['fichierphoto']['tmp_name'],$nom);
+        $nomfichier = "pp".$id_nouveau.".".$extension_pp;
+        echo $nomfichier;
+        
+        //On met à jour le nom de la photo dans la base de donnée
+        $sql = "UPDATE `user` SET `pp`= '".$nomfichier."' WHERE `id`= '".$id_nouveau."' ";
+        mysqli_query($db_handle, $sql);
+        
+    }
+    
+    
+   
     
     /*
     

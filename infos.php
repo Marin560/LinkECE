@@ -54,21 +54,18 @@ else{
  
             }
     else{  
-                
-                
-        
-        $resultat = mysqli_fetch_assoc($recu1);
+            $resultat = mysqli_fetch_assoc($recu1);
  
-                $age = $resultat['age'];
-        $ville=$resultat['ville'];
-                $mdp=$resultat['mdp'];
-        $cv=$resultat['cv'];
-        $prenom=$resultat['prenom'];
-        $nom=$resultat['nom']; 
+            $age = $resultat['age'];
+            $ville=$resultat['ville'];
+            $mdp=$resultat['mdp'];
+            $cv=$resultat['cv'];
+            $prenom=$resultat['prenom'];
+            $nom=$resultat['nom']; 
         
-                    $modif = "0";
+            $modif = "0";
  
-            }
+    }
  
  
 echo '
