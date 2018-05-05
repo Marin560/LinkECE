@@ -89,6 +89,9 @@ else{
 				<div class="well">
 					<?php echo '<p>Vous avez<br>'.$_SESSION['nbamis'].'<br>relations</p> ' ?>
 				</div>
+                <div class="well">
+					<?php echo '<a href="images/CV/.pdf">Cliquez ici pour voir votre CV</a>' //Faut choper le bon nom ?>
+				</div>
 			</div>
 
 			<div class="col-sm-7">
@@ -131,13 +134,7 @@ else{
                             </div> 
                             <div class="col-sm-1">
                                 <a href="traitement_suppression_post.php?id_publication='.$id_publi[$i].'"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
-                            </div> 
-                            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                                <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-primary btn-sm">J aime</button>
-                                    <button type="button" class="btn btn-primary btn-sm">Commenter</button>
-                                </div>
-                            </div>    
+                            </div>   
                         </div>
                     </div>
                     

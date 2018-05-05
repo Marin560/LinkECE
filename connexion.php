@@ -27,7 +27,7 @@
         E-mail : 
         <input type="text" name="email" id="email" placeholder="Votre e-mail.." onblur="verifEmail(this)" > 
         Mot de passe : 
-        <input type="text" name="mdp" id="mdp" placeholder="Votre mot de passe.." onblur="verifMdp(this)">   
+        <input type="password" name="mdp" id="mdp" placeholder="Votre mot de passe.." onblur="verifMdp(this)">   
         <input type="submit" name="Valider" value="Se connecter">
         <input type="submit" name="Modifier" value="Modifier">
 
