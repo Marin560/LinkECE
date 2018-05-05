@@ -1,4 +1,4 @@
-r<?php
+<?php
  
 session_start();
  
@@ -36,16 +36,16 @@ else{
  
 <body>
  
- 
+
 <?php
 //Vérification s'il faut afficher les candidatures ou non 
     if(isset($_GET['modif'])){ //Si on a cliqué sur le bouton, on reçoit une variable 
                 
-                $resultat = mysqli_fetch_assoc($recu1);
+        $resultat = mysqli_fetch_assoc($recu1);
  
-                 $age = $resultat['age'];
+        $age = $resultat['age'];
         $ville=$resultat['ville'];
-                       $mdp=$resultat['mdp'];
+        $mdp=$resultat['mdp'];
         $cv=$resultat['cv'];  
         $prenom=$resultat['prenom'];
         $nom=$resultat['nom']; 
