@@ -13,6 +13,20 @@ if($db_found){
 	
 	$sql1 = "SELECT id_publi, nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user  WHERE `id_user`='".$id."' ORDER BY id_publi DESC";
 	$recu1 = mysqli_query($db_handle, $sql1) ;
+
+
+	$sql = "SELECT DISTINCT id_photo, id_albumphotos FROM user INNER JOIN albums INNER JOIN photos WHERE `id_user` = '".$id."'";
+	
+	$recu = mysqli_query($db_handle, $sql);
+	
+
+	$photos=array();
+	$albums=array();
+	$truc=array();
+	$i=0;
+
+	$albums2=array();
+	$j=0;
 }
 else{
 	die('Arrêt du script; Bdd non trouvée');
@@ -65,25 +79,25 @@ else{
 			<div class="col-sm-3 well">
 				<div class="row well">
 					<p>Photos</p>
-					<div class="col-sm-4">
-						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
-					<div class="col-sm-4">
-						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
-					<div class="col-sm-4">
-						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
-					<div class="col-sm-12"><br></div>
-					<div class="col-sm-4">
-						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
-					<div class="col-sm-4">
-						<img src="alienor.png" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
-					<div class="col-sm-4">
-						<img src="images/photo_essai.jpg" class="img-thumbnail" class="img-fluid" alt="Avatar">
-					</div>
+					<?php 
+                        while($resultat = mysqli_fetch_assoc($recu)){
+
+                        $photos[$i]=$resultat["id_photo"];
+                        $albums[$i]=$resultat["id_albumphotos"];
+                        $truc[$i]= $albums[$i].$photos[$i];
+
+
+                        echo '
+                            <div class="col-sm-4">
+                                <img src="'.$repertoire.$truc[$i].'" class="img-thumbnail" class="img-fluid" alt="Photo">
+                            </div>
+                        ';
+
+                        $i++;
+
+                        };
+
+                        ?>
 
 				</div>
 				<div class="well">
