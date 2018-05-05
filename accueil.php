@@ -16,7 +16,7 @@ if($db_found){
 	$resultat = mysqli_fetch_assoc($recu);
 	$_SESSION['nbamis']=$resultat['nb']; //C'est le nombre d'amis de l'utilisateur
 
-	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 OR user.id=amitie.id1 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id2 WHERE amitie.id1= '".$id."' ";
+	$sql1 = "SELECT DISTINCT prenom, nom, pp, description,id_publi, nb_likes FROM user INNER JOIN amitie ON user.id=amitie.id2 INNER JOIN publications ON publications.id_user=amitie.id2 OR publications.id_user=amitie.id2 WHERE amitie.id1= '".$id."' ";
 
 	$recu1 = mysqli_query($db_handle, $sql1) ;
 }
