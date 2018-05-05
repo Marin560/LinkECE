@@ -36,6 +36,7 @@ else{
  
 <body>
  
+ 
 <?php
 //Vérification s'il faut afficher les candidatures ou non 
     if(isset($_GET['modif'])){ //Si on a cliqué sur le bouton, on reçoit une variable 
