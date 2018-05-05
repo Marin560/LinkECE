@@ -48,7 +48,6 @@
 
                 <div class="form-group">
                     <input type="file" name="fichier" id="fichier"/><br />    
-                    <input type="submit" name="submit" value="Envoyer" />
                 </div>
 
                 <input type="submit" name="inscription" value="Sinscrire"> 

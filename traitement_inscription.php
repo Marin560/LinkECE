@@ -2,7 +2,7 @@
 
 session_start();
 
-//header('Location: connexion.php');
+header('Location: connexion.php');
 include 'connexion_bdd.php';
 
 
@@ -13,8 +13,7 @@ if($db_found){
     $sql1 = "INSERT INTO user (mail, prenom, nom, mdp) VALUES ('".$_POST['email']."' , '".$_POST['prenom']."' , '".$_POST['nom']."' , '".$_POST['mdp']."' ) ";
     mysqli_query($db_handle, $sql1) ;
 
-    $sql = "INSERT INTO informations (age, ville, code_postale) VALUES ( '".$_POST['age']."', '".$_POST['ville']."' , ".$_POST['postale']."')";
-    mysqli_query($db_handle, $sql) ;
+
     
     //On récupère l'id du nouvel utilisateur
     $sql = "SELECT id FROM user WHERE mail= '".$_POST['email']."' ";
@@ -29,6 +28,9 @@ if($db_found){
     $nom = "C:\MAMP\htdocs\LinkECE\LinkECE\images\CV\cv".$id_nouveau.".".$extention;
     move_uploaded_file($_FILES['fichier']['tmp_name'],$nom);
     
+
+    $sql = "INSERT INTO informations (id_user, age, ville, code_postale) VALUES ( '".$id_nouveau."' ,'".$_POST['age']."', '".$_POST['ville']."' , '".$_POST['postale']."')";
+    mysqli_query($db_handle, $sql) ;
     
     /*
     
