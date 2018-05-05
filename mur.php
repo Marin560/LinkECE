@@ -11,7 +11,6 @@ include 'connexion_bdd.php';
 
 if($db_found){
 	
-
 	$sql1 = "SELECT id_publi, nb_likes, description, photos FROM publications INNER JOIN user ON user.id=id_user  WHERE `id_user`='".$id."' ORDER BY id_publi DESC";
 	$recu1 = mysqli_query($db_handle, $sql1) ;
 }
